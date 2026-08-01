@@ -70,20 +70,11 @@ export default function Hero() {
 
   return (
     <section
-      className="relative w-full mb-5
-        flex
-        items-center
-        justify-center
-        overflow-hidden
-      "
+      className="relative w-full mb-5 flex items-center justify-center overflow-hidden"
     >
       {/* BACKGROUND */}
       <div
-        className="
-          absolute inset-0
-          bg-cover bg-center
-          scale-110
-        "
+        className=" absolute inset-0 bg-cover bg-center scale-110"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1400&q=80')",
@@ -94,15 +85,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/7" />
 
       {/* GLOW */}
-      <div
-        className="
-          absolute
-          inset-0
-          bg-gradient-to-b
-          from-purple-900/20
-          via-black/40
-          to-black
-        "
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-black/40 to-black"
       />
 
       {/* FLOATING SHAPES */}
@@ -114,17 +97,7 @@ export default function Hero() {
           duration: 4,
           repeat: Infinity,
         }}
-        className="
-          absolute
-          top-20
-          left-10
-          w-24
-          h-32
-          bg-yellow-400
-          rounded-xl
-          opacity-20
-          blur-sm
-        "
+        className="absolute top-20 left-10 w-24 h-32 bg-yellow-400 rounded-xl opacity-20 blur-sm"
       />
 
       <motion.div
@@ -135,17 +108,7 @@ export default function Hero() {
           duration: 5,
           repeat: Infinity,
         }}
-        className="
-          absolute
-          bottom-20
-          right-10
-          w-28
-          h-36
-          bg-purple-500
-          rounded-xl
-          opacity-20
-          blur-md
-        "
+        className="absolute bottom-20 right-10 w-28 h-36 bg-purple-500 rounded-xl opacity-20 blur-md"
       />
 
       {/* CONTENT */}
@@ -161,61 +124,29 @@ export default function Hero() {
         transition={{
           duration: 0.8,
         }}
-        className="
-          relative
-          z-10
-          text-center
-          px-6
-          max-w-5xl
-        "
+        className="relative z-10 text-center px-6 max-w-5xl"
       >
         {/* BRAND */}
         <motion.h1
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="
-            text-5xl
-            md:text-7xl
-            font-black
-            text-yellow-400
-            mb-4
-          "
+          className="text-5xl md:text-7xl font-black text-yellow-400 mb-4"
         >
           UketBooks
         </motion.h1>
 
-        <p
-          className="
-            text-yellow-300
-            mb-8
-            text-lg
-            md:text-2xl
-            font-medium
-          "
+        <p className="text-yellow-300 mb-8 text-lg md:text-2xl font-medium"
         >
           Your favorite digital bookstore.
         </p>
 
         {/* TYPING HEADLINE */}
-        <h2
-          className="
-            text-3xl
-            md:text-6xl
-            font-black
-            text-white
-            leading-tight
-            mb-8
-            min-h-[100px]
-          "
+        <h2 className="text-3xl md:text-6xl font-black text-white leading-tight mb-8 min-h-[100px]"
         >
           {displayText}
 
-          <span
-            className="
-              animate-pulse
-              text-yellow-400
-            "
+          <span className="animate-pulse text-yellow-400"
           >
             |
           </span>
@@ -224,63 +155,23 @@ export default function Hero() {
           <SearchBar search={search} setSearch={setSearch} books={books} />
         
         {/* CTA BUTTONS */}
-        <div
-          className="
-            flex
-            flex-col
-            sm:flex-row
-            gap-4
-            justify-center
-          "
+        <div className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <Link
-            to="/books"
-            className="
-              bg-purple-700/50
-              hover:bg-yellow-400
-              hover:text-black
-              text-white
-              px-8
-              py-4
-              rounded-2xl
-              font-bold
-              transition-all duration-300
-              hover:scale-105
-              shadow-xl
-            "
+          <Link to="/books"
+            className="bg-purple-700/50 hover:bg-yellow-400 hover:text-black text-white px-8 py-4 rounded-2xl font-bold transition-all duration-300 hover:scale-105 shadow-xl"
           >
             Explore Books
           </Link>
 
-          <Link
-            to="/myLibrary"
-            className="
-              border
-              border-white/20
-              bg-purple-700/50
-              hover:bg-yellow-400
-              hover:border-yellow-400
-              hover:text-black
-              text-white
-              px-8
-              py-4
-              rounded-2xl
-              font-semibold
-              transition-all duration-300
-              backdrop-blur-lg
-            "
+          <Link to="/myLibrary"
+            className=" border border-white/20 bg-purple-700/50 hover:bg-yellow-400 hover:border-yellow-400 hover:text-black text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 backdrop-blur-lg"
           >
             Download Books
           </Link>
         </div>
 
         {/* TRUST TEXT */}
-        <p
-          className="
-            mt-10
-            text-sm
-            text-gray-400
-          "
+        <p className=" mt-10 text-sm text-gray-400"
         >
           Trusted by readers worldwide •
           Secure payments • Instant

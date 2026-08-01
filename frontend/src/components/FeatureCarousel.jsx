@@ -94,7 +94,6 @@ export default function FeatureCarousel() {
             },
           }}
         >
-
           {displayBooks.map((book) => (
 
             <SwiperSlide key={getBookId(book)}>

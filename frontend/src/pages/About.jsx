@@ -260,7 +260,7 @@ export default function About() {
                   {category.icon}
                 </div>
 
-                <h3 className="font-bold text-xl">
+                <h3 className="font-bold text-sm md:text-xl">
                   {category.name}
                 </h3>
               </motion.div>

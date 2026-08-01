@@ -21,6 +21,7 @@ import Feedback from "../pages/Feedback";
 import FAQ from "../pages/FAQ";
 import Terms from "../pages/Terms";
 import Privacy from "../pages/Privacy";
+import Cookies from "../pages/Cookies";
 import NotFound from "../pages/NotFound";
 import HelpCenter from "../components/HelpCenter";
 import ScrollToTop from "../components/ScrollToTop";
@@ -41,6 +42,7 @@ export default function AppRoutes() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route path="/cookies" element={<Cookies />} />
         <Route path="/not-found" element={<NotFound />} />
         <Route path="/books" element={<Books />} />
         <Route path="/books/:id" element={<BookDetails />} />

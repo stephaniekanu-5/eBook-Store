@@ -144,7 +144,7 @@ export default function Navbar() {
     },
     {
       name: "Cookies Policy",
-      path: "/cookies",
+      path: "/Cookies",
       icon: (
         <FaCookie />
       ),

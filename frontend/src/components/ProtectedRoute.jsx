@@ -1,5 +1,6 @@
 import {
   Navigate,
+  useLocation,
 } from "react-router-dom";
 
 import {
@@ -13,6 +14,8 @@ export default function ProtectedRoute({
     user,
     loading,
   } = useAuth();
+
+  const location = useLocation();
 
   // Loading state
   if (loading) {
@@ -37,8 +40,10 @@ export default function ProtectedRoute({
     return (
       <Navigate
         to="/login"
-        state={{ from: location }}
         replace
+        state={{
+          from: location.pathname,
+        }}
       />
     );
   }

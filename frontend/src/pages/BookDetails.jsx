@@ -24,11 +24,11 @@ export default function BookDetails() {
   }
 
   return (
-    <div className="mx-auto bg-white shadow p-6 rounded min-h-screen">
+    <div className="mx-auto bg-white shadow p-6 rounded min-h-screen md:items-center md:gap-6 md:max-w-7xl">
       <img
         src={book.cover}
         alt={book.title}
-        className="w-full h-70 object-cover rounded"
+        className="w-full h-70 md:h-screen object-cover rounded"
       />
       <h2 className="text-2xl font-bold mt-4 text-gray-800">{book.title}</h2>
 

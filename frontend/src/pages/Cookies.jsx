@@ -49,7 +49,7 @@ export default function Cookies() {
     <main className="min-h-screen bg-black text-white">
 
       {/* Hero */}
-      <section className="relative overflow-hidden py-20 px-6 border-b border-white/10">
+      <section className="relative overflow-hidden py-2 px-6 border-b border-white/10">
 
         <div className="absolute -top-40 left-0 w-96 h-96 bg-yellow-400/10 blur-3xl rounded-full" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-yellow-400/10 blur-3xl rounded-full" />
@@ -61,22 +61,22 @@ export default function Cookies() {
             animate={{ opacity: 1, y: 0 }}
             className="inline-block bg-yellow-400 text-black px-5 py-2 rounded-full font-bold mb-6"
           >
-            🍪 Cookies Policy
+            🍪Uketbooks Cookies Policy
           </motion.div>
 
-          <motion.h1
+           {/* <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-7xl font-black"
           >
             Cookie
             <span className="text-yellow-400"> Policy</span>
-          </motion.h1>
+          </motion.h1> */}
 
           <motion.p
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl mx-auto mt-8 text-lg text-gray-300 leading-8"
+            className="max-w-3xl mx-auto mt-4 text-lg text-gray-300 leading-8"
           >
             This page explains how UketBooks uses cookies to improve your
             browsing experience, remember your preferences, and keep your

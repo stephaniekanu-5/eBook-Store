@@ -108,22 +108,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/myLibrary"
-                className="
-                  bg-purple-600 hover:bg-purple-500
-                  px-8 py-4 rounded-2xl font-bold
-                  transition-all duration-300
-                  hover:scale-[1.02]
-                "
+                className="bg-purple-600 hover:bg-purple-500 px-8 py-4 rounded-2xl font-bold transition-all duration-300 hover:scale-[1.02]"
               >
                 Explore Library
               </a>
               <a
                 href="/register"
-                className="
-                  bg-white/5 border border-white/10
-                  px-8 py-4 rounded-2xl font-semibold
-                  hover:bg-white/10 transition
-                "
+                className="bg-white/5 border border-white/10 px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition"
               >
                 Create Account
               </a>

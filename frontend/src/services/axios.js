@@ -47,28 +47,32 @@ API.interceptors.response.use(
   (error) => {
     console.error(
       "API Error:",
-      error?.response?.data ||
-        error.message
+      error?.response?.data || error.message
     );
 
-    // Auto logout on unauthorized
-    if (
-      error?.response?.status ===
-      401
-    ) {
-      localStorage.removeItem(
-        "token"
-      );
-
-      // optional redirect
-      window.location.href =
-        "/login";
-    }
-
-    return Promise.reject(
-      error
-    );
+    return Promise.reject(error);
   }
 );
+
+    // // Auto logout only if the user is already authenticated
+    // if (error?.response?.status === 401) {
+    //   const token = localStorage.getItem("token");
+
+    //   if (
+    //     token &&
+    //     !error.config?.url?.includes("/api/auth/login") &&
+    //     !error.config?.url?.includes("/api/auth/register")
+    //   ) {
+    //     localStorage.removeItem("token");
+
+    //     window.location.replace("/login");
+    //   }
+    // }
+
+//     return Promise.reject(
+//       error
+//     );
+//   }
+// );
 
 export default API;

@@ -1,23 +1,10 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-
-import {
-  loginUser,
-  registerUser,
-  getProfile,
-  logoutUser,
-} from "../services/authService";
-
+import {createContext, useContext, useEffect, useState,} from "react";
+import {loginUser, registerUser, getProfile, logoutUser,} from "../services/authService";
 // =========================
 // CONTEXT
 // =========================
 const AuthContext =
   createContext(null);
-
 // =========================
 // PROVIDER
 // =========================
@@ -29,7 +16,6 @@ export const AuthProvider = ({
 
   const [loading, setLoading] =
     useState(true);
-
   // =========================
   // LOAD AUTH USER
   // =========================
@@ -55,22 +41,18 @@ export const AuthProvider = ({
           setUser(
             data.user
           );
-        } catch (error) {
-          console.error(
-            "Auth initialization failed:",
-            error
-          );
+        } 
+        catch (error) {
+          console.error("Auth initialization failed:", error);
 
-          localStorage.removeItem(
-            "token"
-          );
+          if (error?.response?.status === 401) {
+            localStorage.removeItem("token");
+          }
 
           setUser(null);
-        } finally {
-          setLoading(false);
-        }
+        } 
+        finally { setLoading(false); }
       };
-
     initializeAuth();
   }, []);
 
@@ -152,23 +134,16 @@ export const AuthProvider = ({
   // =========================
   // LOGOUT
   // =========================
-  const logout =
-    async () => {
-      try {
-        await logoutUser();
-      } catch (error) {
-        console.error(
-          "Logout failed:",
-          error
-        );
-      } finally {
-        localStorage.removeItem(
-          "token"
-        );
+ const logout = async () => {
+    try {
+      await logoutUser();
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
 
-        setUser(null);
-      }
-    };
+    localStorage.removeItem("token");
+    setUser(null);
+  };
 
   // =========================
   // VALUES

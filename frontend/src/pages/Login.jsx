@@ -8,8 +8,10 @@ export default function Login() {
   const { login } = useAuth();
   const location = useLocation();
 
-  const from = location.state?.from?.pathname || "/";
-  // =========================
+const from =
+  typeof location.state?.from === "string"
+    ? location.state.from
+    : "/";  // =========================
   // STATES
   // =========================
   const [form, setForm] =
@@ -91,8 +93,11 @@ export default function Login() {
           return;
         }
 
-        navigate(from, { replace: true });
-        
+      if (typeof from === "string") {
+          navigate(from, { replace: true });
+        } else {
+          navigate("/", { replace: true });
+        }        
       } catch (err) {
         console.error(err);
 
@@ -106,49 +111,21 @@ export default function Login() {
 
   return (
     <div
-      className="
-        min-h-screen
-        flex
-        items-center
-        justify-center
-        px-4
-        bg-black
-        text-white
+      className="min-h-screen flex items-center justify-center px-4 bg-black text-white
       "
     >
       <div
-        className="
-          w-full
-          max-w-md
-
-          bg-gray-900/95
-          backdrop-blur-xl
-
-          border
-          border-gray-800
-
-          rounded-3xl
-          p-8
-
-          shadow-2xl
-        "
+        className="w-full max-w-md bg-gray-900/95 backdrop-blur-xl border border-gray-800 rounded-3xl p-8 shadow-2xl"
       >
         {/* HEADER */}
         <h1
-          className="
-            text-3xl
-            font-black
-            mb-2
-          "
+          className="text-3xl font-black mb-2"
         >
           Welcome Back
         </h1>
 
         <p
-          className="
-            text-gray-400
-            mb-8
-          "
+          className="text-gray-400 mb-8"
         >
           Login to continue
         </p>
@@ -180,21 +157,7 @@ export default function Login() {
             onChange={
               handleChange
             }
-            className="
-              w-full
-              bg-black/70
-
-              border
-              border-gray-700
-
-              rounded-xl
-              p-4
-
-              outline-none
-
-              focus:border-yellow-400
-              transition-all
-            "
+            className="w-full bg-black/70 border border-gray-700 rounded-xl p-4 outline-none focus:border-yellow-400 transition-all"
           />
 
           {/* PASSWORD */}
@@ -233,12 +196,7 @@ export default function Login() {
                 absolute
                 top-1/2
                 right-4
-                -translate-y-1/2
-
-                text-gray-400
-                hover:text-yellow-400
-
-                transition-all
+                -translate-y-1/2 text-gray-400 hover:text-yellow-400 transition-all
               "
             >
               {showPassword ? (

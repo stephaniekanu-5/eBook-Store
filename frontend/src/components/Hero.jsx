@@ -29,20 +29,6 @@ export default function Hero() {
       clearInterval(interval);
   }, []);
 
-  // =========================
-  // SEARCH HANDLER
-  // =========================
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-
-  //   if (!search.trim()) return;
-
-  //   navigate(
-  //     `/books?search=${encodeURIComponent(
-  //       search
-  //     )}`
-  //   );
-  // };
   // 🔥 Smart search + filter system
     const filteredBooks = useMemo(() => {
       const q = search.toLowerCase();
@@ -173,9 +159,7 @@ export default function Hero() {
         {/* TRUST TEXT */}
         <p className=" mt-10 text-sm text-gray-400"
         >
-          Trusted by readers worldwide •
-          Secure payments • Instant
-          downloads
+          Trusted by readers worldwide • Secure payments • Instant downloads
         </p>
       </motion.div>
     </section>

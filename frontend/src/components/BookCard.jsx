@@ -27,10 +27,9 @@ export default function BookCard({ book }) {
     <div className="max-w-[220px] bg-gray-900 rounded-3xl overflow-hidden border border-white/10 hover:border-yellow-400/50 transition-all duration-300 group"
     >
       {/* Cover */}
-      <div
-          onClick={handleView}
-          className="max-w-[220px] bg-gray-900 rounded-3xl overflow-hidden border border-white/10 hover:border-yellow-400/50 transition-all duration-300 group cursor-pointer"
-        >
+      <div className="overflow-hidden relative"
+        onClick={handleView}
+      >
         <img 
           src={book.cover}
           alt={book.title}

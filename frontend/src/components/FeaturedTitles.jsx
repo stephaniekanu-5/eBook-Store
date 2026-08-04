@@ -147,7 +147,7 @@ export default function FeaturedTitles() {
                       onClick={() => navigate(`/books/${getBookId(book)}`)}
                       className="bg-yellow-400 hover:bg-yellow-300 text-black text-sm font-bold px-4 py-2 rounded-xl transition"
                     >
-                      Buy Now
+                      View Details
                     </button>
                   </div>
                 </div>

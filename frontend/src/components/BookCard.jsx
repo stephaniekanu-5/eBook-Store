@@ -18,7 +18,7 @@ export default function BookCard({ book }) {
   );  
   const savings = originalPrice - Number(book.price);
   const handleView = () => {
-    navigate(`/Books/${bookId}`);
+    navigate(`/books/${bookId}`);
   };
   const handleAddToCart = () => {
     addToCart(book);
@@ -27,8 +27,11 @@ export default function BookCard({ book }) {
     <div className="max-w-[220px] bg-gray-900 rounded-3xl overflow-hidden border border-white/10 hover:border-yellow-400/50 transition-all duration-300 group"
     >
       {/* Cover */}
-      <div className="relative overflow-hidden">
-        <img
+      <div
+          onClick={handleView}
+          className="max-w-[220px] bg-gray-900 rounded-3xl overflow-hidden border border-white/10 hover:border-yellow-400/50 transition-all duration-300 group cursor-pointer"
+        >
+        <img 
           src={book.cover}
           alt={book.title}
           onError={(e) => {
@@ -36,7 +39,7 @@ export default function BookCard({ book }) {
               "https://via.placeholder.com/300x450?text=No+Cover";
           }}
           className="
-            w-full h-70 object-cover group-hover:scale-105 transition-transform duration-500"
+            w-full h-70 object-cover group-hover:scale-105 transition-transform duration-500 cursor-pointer"
         />
         {book.category && (
           <span
@@ -92,13 +95,16 @@ export default function BookCard({ book }) {
         </div>
         <div className="flex gap-1 mt-2 justify-between">
           <button
-            onClick={handleAddToCart}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleAddToCart();
+            }}
             className="flex-1 bg-yellow-400 hover:bg-yellow-300 font-semibold py-1 px-1 rounded-xl transition"
           >
             +🛒
           </button>
           <button
-            onClick={handleView}
+            onClick={() => {navigate(`/preview/${bookId}`);}}
             className="flex-1 px-1 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black rounded-xl transition"
           >
             Read

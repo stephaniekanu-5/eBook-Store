@@ -93,16 +93,18 @@ const from =
           return;
         }
 
-      if (typeof from === "string") {
+        if (typeof from === "string") {
           navigate(from, { replace: true });
         } else {
           navigate("/", { replace: true });
-        }        
+        }
       } catch (err) {
         console.error(err);
 
         setError(
-          "Something went wrong. Please try again."
+          err?.response?.data?.message ||
+            err.message ||
+            "Something went wrong. Please try again."
         );
       } finally {
         setLoading(false);

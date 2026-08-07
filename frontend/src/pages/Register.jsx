@@ -1,20 +1,18 @@
 import {useState,} from "react";
-import {Link, useNavigate,} from "react-router-dom";
+import {Link, useNavigate, useLocation,} from "react-router-dom";
 import {useAuth,} from "../context/AuthContext";
 import {FaEye, FaEyeSlash,} from "react-icons/fa";
 
 export default function Register() {
   const navigate = useNavigate();
   const { register } = useAuth();
-  const [form, setForm] = useState({
-      name: "",
-      email: "",
-      password: "",
-    });
+  const [form, setForm] = useState({ name: "", email: "", password: "", });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword,] = useState(false);
-
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const [success, setSuccess] = useState("");
   const handleChange = (e) => {
     const {
       name,
@@ -73,13 +71,23 @@ export default function Register() {
 
           return;
         }
-
-       navigate(from, { replace: true });
-      } catch (err) {
+      setForm({
+        name: "",
+        email: "",
+        password: "",
+      });
+      setSuccess("🎉 Account created successfully!");
+      setTimeout(() => {
+        navigate(from, { replace: true });
+      }, 1500);
+      } 
+      catch (err) {
         console.error(err);
 
         setError(
-          "Something went wrong. Please try again."
+          err?.response?.data?.message ||
+          err.message ||
+          "Something went wrong. please try again."
         );
       } finally {
         setLoading(false);
@@ -155,7 +163,12 @@ export default function Register() {
             {error}
           </div>
         )}
-
+        {/* SUCCESS */}
+        {success && (
+          <div className="bg-green-500/20 border border-green-500/30 text-green-400 p-3 rounded-xl mb-5">
+            {success}
+          </div>
+        )}
         {/* FORM */}
         <form
           onSubmit={

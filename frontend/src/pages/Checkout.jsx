@@ -1,38 +1,28 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useMemo } from "react";
-import {
-  FaLock,
-  FaTag,
-  FaCreditCard,
-  FaShieldAlt,
-  FaCheckCircle,
-} from "react-icons/fa";
-
+import { FaLock, FaTag, FaCreditCard, FaShieldAlt, FaCheckCircle,} from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 import { usePurchases } from "../context/PurchaseContext";
 import { useAuth } from "../context/AuthContext";
-
 import { getBookId } from "../utils/bookIds";
 import { verifyPayment } from "../services/paymentService";
-
 import PaystackGateway from "../components/PaystackGateway";
+import FeaturedTitle from "../components/FeaturedTitles";
 
 export default function Checkout() {
   const navigate = useNavigate();
   const { cart, clearCart } = useCart();
   const { addPurchase } = usePurchases();
   const { user } = useAuth();
-  const [loadingCoupon, setLoadingCoupon] =
-    useState(false);
-  const [couponInput, setCouponInput] =
-    useState("");
-  const [discount, setDiscount] =
-    useState(0);
-  const [couponApplied, setCouponApplied] =
-    useState(false);
-  const [couponMessage, setCouponMessage] =
-    useState("");
- 
+  const [loadingCoupon, setLoadingCoupon] = useState(false);
+  const [couponInput, setCouponInput] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [couponApplied, setCouponApplied] = useState(false);
+  const [couponMessage, setCouponMessage] = useState("");
+  
+  const hasInvalidItems = cart.some(
+    (item) => !item._id
+  );
   const subtotal = useMemo(
     () =>
       cart.reduce(
@@ -44,11 +34,7 @@ export default function Checkout() {
       ),
     [cart]
   );
-
-  const finalAmount = Math.max(
-    subtotal - discount,
-    0
-  );
+  const finalAmount = Math.max( subtotal - discount, 0 );
 
   const totalBooks = useMemo(
     () =>
@@ -59,11 +45,6 @@ export default function Checkout() {
       ),
     [cart]
   );
-
-  const hasInvalidItems = cart.some(
-    (item) => !item._id
-  );
-
   // ----------------------------------------
   // FORMAT PRICE
   // ----------------------------------------
@@ -156,275 +137,10 @@ export default function Checkout() {
   };
   return (
     <main className="min-h-screen bg-black text-white px-4 py-10">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8">
-
-<section className="bg-gradient-to-b from-gray-900 to-black border border-white/10 rounded-3xl p-8 shadow-2xl">
-
-  {/* HEADER */}
-
-  <div className="flex items-center justify-between mb-8">
-
-    <div>
-
-      <h1 className="text-3xl font-black">
-        Order Summary
-      </h1>
-
-      <p className="text-gray-400 mt-2">
-        Review your purchase before completing payment.
-      </p>
-
-    </div>
-
-    <div className="bg-yellow-400/10 border border-yellow-400/20 rounded-2xl px-5 py-3 text-center">
-
-      <p className="text-xs uppercase tracking-wider text-gray-400">
-        Books
-      </p>
-
-      <p className="text-2xl font-black text-yellow-400">
-        {totalBooks}
-      </p>
-
-    </div>
-
-  </div>
-
-  {/* EMPTY CART */}
-
-  {cart.length === 0 ? (
-
-    <div className="rounded-3xl bg-gray-800/60 border border-white/10 py-20 text-center">
-
-      <div className="text-7xl mb-6">
-        📚
-      </div>
-
-      <h2 className="text-2xl font-bold">
-        Your cart is empty
-      </h2>
-
-      <p className="text-gray-400 mt-3 max-w-sm mx-auto">
-        Browse our library and add amazing ebooks to begin your learning journey.
-      </p>
-
-      <button
-        onClick={() => navigate("/books")}
-        className="mt-8 bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-8 py-4 rounded-2xl transition"
-      >
-        Browse Books
-      </button>
-
-    </div>
-
-  ) : (
-
-    <>
-
-      {/* BOOKS */}
-
-      <div className="space-y-5 max-h-[520px] overflow-y-auto pr-2">
-
-        {cart.map((item, index) => (
-
-          <div
-            key={getBookId(item) || index}
-            className="bg-white/5 border border-white/10 rounded-3xl p-4 hover:border-yellow-400/40 transition"
-          >
-
-            <div className="flex gap-5">
-
-              <img
-                src={item.cover}
-                alt={item.title}
-                className="w-24 h-32 rounded-2xl object-cover shadow-lg"
-              />
-
-              <div className="flex-1">
-
-                <div className="flex justify-between">
-
-                  <div>
-
-                    <h3 className="font-bold text-lg line-clamp-2">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-gray-400 mt-1">
-                      {item.author}
-                    </p>
-
-                  </div>
-
-                  <span className="bg-yellow-400 text-black text-xs font-bold px-3 py-2 rounded-xl h-fit">
-
-                    x{item.quantity}
-
-                  </span>
-
-                </div>
-
-                <div className="mt-5 flex justify-between items-center">
-
-                  <div>
-
-                    <p className="text-sm text-gray-500">
-                      Unit Price
-                    </p>
-
-                    <p className="text-yellow-400 font-bold">
-
-                      {formatPrice(item.price)}
-
-                    </p>
-
-                  </div>
-
-                  <div className="text-right">
-
-                    <p className="text-sm text-gray-500">
-                      Total
-                    </p>
-
-                    <p className="text-xl font-black">
-
-                      {formatPrice(
-                        item.price * item.quantity
-                      )}
-
-                    </p>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        ))}
-
-      </div>
-
-      {/* PRICE SUMMARY */}
-
-      <div className="border-t border-white/10 mt-8 pt-8 space-y-5">
-
-        <div className="flex justify-between text-gray-400">
-
-          <span>Subtotal</span>
-
-          <span>
-
-            {formatPrice(subtotal)}
-
-          </span>
-
-        </div>
-
-        {discount > 0 && (
-
-          <div className="flex justify-between text-green-400 font-semibold">
-
-            <span>
-              Discount
-            </span>
-
-            <span>
-
-              -{formatPrice(discount)}
-
-            </span>
-
-          </div>
-
-        )}
-
-        <div className="flex justify-between items-center pt-5 border-t border-white/10">
-
-          <span className="text-xl font-bold">
-
-            Total
-
-          </span>
-
-          <span className="text-4xl font-black text-yellow-400">
-
-            {formatPrice(finalAmount)}
-
-          </span>
-
-        </div>
-
-      </div>
-
-      {/* TRUST */}
-
-      <div className="mt-8 bg-green-500/10 border border-green-500/20 rounded-3xl p-5">
-
-        <div className="flex items-center gap-3 mb-4">
-
-          <FaShieldAlt className="text-green-400 text-2xl" />
-
-          <h3 className="font-bold">
-
-            Secure Checkout
-
-          </h3>
-
-        </div>
-
-        <div className="space-y-3 text-sm text-gray-300">
-
-          <div className="flex items-center gap-3">
-
-            <FaCheckCircle className="text-green-400" />
-
-            SSL Encrypted Payment
-
-          </div>
-
-          <div className="flex items-center gap-3">
-
-            <FaCheckCircle className="text-green-400" />
-
-            Instant Ebook Delivery
-
-          </div>
-
-          <div className="flex items-center gap-3">
-
-            <FaCheckCircle className="text-green-400" />
-
-            Verified Digital Products
-
-          </div>
-
-          <div className="flex items-center gap-3">
-
-            <FaCheckCircle className="text-green-400" />
-
-            Secure Paystack Processing
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </>
-
-  )}
-
-</section>
+      <div className="bg-gradient-to-b from-gray-900 to-black border border-white/10 rounded-3xl p-8 shadow-2xl">
 <section className="bg-gradient-to-b from-gray-900 to-black border border-white/10 rounded-3xl p-8 shadow-2xl h-fit sticky top-8">
-
   {/* Header */}
-
   <div className="mb-8">
-
     <div className="flex items-center gap-3 mb-3">
 
       <div className="w-12 h-12 rounded-2xl bg-yellow-400 flex items-center justify-center">
@@ -789,7 +505,7 @@ export default function Checkout() {
 </section>
 {/* RECOMMENDED BOOKS */}
 
-{/* <section className="max-w-6xl mx-auto mt-20">
+<section className="max-w-6xl mx-auto mt-20">
 
   <div className="flex items-center justify-between mb-10">
 
@@ -811,12 +527,12 @@ export default function Checkout() {
 
   </div>
 
-  <BookSections
+  <FeaturedTitle
     title=""
     books={cart.slice(0,4)}
   />
 
-</section> */}
+</section>
     </main>
   );
 }

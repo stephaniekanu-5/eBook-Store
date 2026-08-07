@@ -36,14 +36,14 @@ export default function PaystackGateway({
   }
 
   const config = {
-    // reference,
+    reference: `UKET-${Date.now()}`,
     email,
     amount: Math.round(amount * 100),
     currency: "USD",
     publicKey,
-    channels: [
-      "card",
-    ],
+    // channels: [
+    //   "card",
+    // ],
     text: loading
       ? "Processing..."
       : `Pay ${formatUSD(amount)}`,

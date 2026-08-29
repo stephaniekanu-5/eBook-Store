@@ -5,7 +5,7 @@ import { verifyPayment } from "../services/paymentService";
 
 export default function PaystackGateway({
   amount = 0,
-  email = "guest@email.com",
+  email = ": guest@email.com",
   metadata = {},
   cart = [],
   onSuccess,

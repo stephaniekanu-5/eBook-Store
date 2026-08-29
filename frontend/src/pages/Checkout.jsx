@@ -187,11 +187,11 @@ export default function Checkout() {
         placeholder="Enter coupon code"
         className="flex-1 rounded-2xl bg-black/40 border border-white/10 px-4 py-3 outline-none focus:border-yellow-400"
       />
-
+      <br></br>
       <button
         onClick={applyCoupon}
         disabled={loadingCoupon}
-        className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-6 rounded-2xl transition disabled:opacity-60"
+        className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-6 py-4 rounded-2xl transition disabled:opacity-60"
       >
 
         {loadingCoupon ? "..." : "Apply"}

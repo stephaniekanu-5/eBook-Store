@@ -176,23 +176,28 @@ export default function Checkout() {
       <h3 className="font-bold">
         Discount Coupon
       </h3>
-      <div className="flex gap-3">
 
-        <input
-          value={couponInput}
-          onChange={(e)=>setCouponInput(e.target.value)}
-          placeholder="Enter coupon code"
-          className="flex-1 rounded-2xl bg-black/40 border border-white/10 px-4 py-3 outline-none focus:border-yellow-400"
-        />
+    </div>
 
-        <button
-          onClick={applyCoupon}
-          disabled={loadingCoupon}
-          className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-6 rounded-2xl transition disabled:opacity-60"
-        >
-          {loadingCoupon ? "..." : "Apply"}
-        </button>
-      </div>
+    <div className="flex gap-2 items-center">
+
+      <input
+        value={couponInput}
+        onChange={(e)=>setCouponInput(e.target.value)}
+        placeholder="Enter coupon code"
+        className="flex-1 rounded-2xl bg-black/40 border border-white/10 px-4 py-3 outline-none focus:border-yellow-400"
+      />
+
+      <button
+        onClick={applyCoupon}
+        disabled={loadingCoupon}
+        className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-6 rounded-2xl transition disabled:opacity-60"
+      >
+
+        {loadingCoupon ? "..." : "Apply"}
+
+      </button>
+
     </div>
 
     {couponMessage && (

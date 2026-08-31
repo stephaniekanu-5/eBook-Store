@@ -3,9 +3,7 @@ import axios from "axios";
 // =========================
 // BASE URL
 // =========================
-const BASE_URL =
-  import.meta.env.VITE_API_URL ||
-  "http://localhost:5000";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 // =========================
 // API INSTANCE
@@ -32,10 +30,8 @@ API.interceptors.request.use(
     return config;
   },
   (error) => {
-    return Promise.reject(
-      error
-    );
-  }
+    return Promise.reject(error);
+  },
 );
 
 // =========================
@@ -45,29 +41,26 @@ API.interceptors.response.use(
   (response) => response,
 
   (error) => {
-    console.error(
-      "API Error:",
-      error?.response?.data || error.message
-    );
+    console.error("API Error:", error?.response?.data || error.message);
 
     return Promise.reject(error);
-  }
+  },
 );
 
-    // // Auto logout only if the user is already authenticated
-    // if (error?.response?.status === 401) {
-    //   const token = localStorage.getItem("token");
+// // Auto logout only if the user is already authenticated
+// if (error?.response?.status === 401) {
+//   const token = localStorage.getItem("token");
 
-    //   if (
-    //     token &&
-    //     !error.config?.url?.includes("/api/auth/login") &&
-    //     !error.config?.url?.includes("/api/auth/register")
-    //   ) {
-    //     localStorage.removeItem("token");
+//   if (
+//     token &&
+//     !error.config?.url?.includes("/api/auth/login") &&
+//     !error.config?.url?.includes("/api/auth/register")
+//   ) {
+//     localStorage.removeItem("token");
 
-    //     window.location.replace("/login");
-    //   }
-    // }
+//     window.location.replace("/login");
+//   }
+// }
 
 //     return Promise.reject(
 //       error

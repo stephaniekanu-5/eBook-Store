@@ -13,12 +13,12 @@ export default function PaystackGateway({
   const [loading, setLoading] = useState(false);
   const publicKey = import.meta.env.VITE_PAYSTACK_KEY;
   const formatUSD = (amount) =>
-  Number(amount || 0).toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+    Number(amount || 0).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
   const paystackAmount = Number(amount) * 100;
-  
+
   if (!amount || amount <= 0) {
     return (
       <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-center text-red-400">
@@ -44,9 +44,7 @@ export default function PaystackGateway({
     // channels: [
     //   "card",
     // ],
-    text: loading
-      ? "Processing..."
-      : `Pay ${formatUSD(amount)}`,
+    text: loading ? "Processing..." : `Pay ${formatUSD(amount)}`,
 
     onSuccess: async (reference) => {
       try {
@@ -63,7 +61,7 @@ export default function PaystackGateway({
         if (response?.success) {
           localStorage.setItem(
             "uketbooks-last-payment",
-            JSON.stringify(reference)
+            JSON.stringify(reference),
           );
 
           onSuccess?.(response);
@@ -76,7 +74,7 @@ export default function PaystackGateway({
         alert(
           error?.response?.data?.message ||
             error.message ||
-            "Payment verification failed"
+            "Payment verification failed",
         );
       } finally {
         setLoading(false);
@@ -103,9 +101,7 @@ export default function PaystackGateway({
           </div>
 
           <div>
-            <h3 className="text-lg font-bold">
-              Secure Payment with Paystack
-            </h3>
+            <h3 className="text-lg font-bold">Secure Payment with Paystack</h3>
             <p className="text-sm text-gray-400">
               Instant ebook access after payment
             </p>
@@ -119,9 +115,7 @@ export default function PaystackGateway({
 
         <div className="mt-2 flex justify-between text-sm text-gray-400">
           <span>Total</span>
-          <span className="font-bold text-yellow-400">
-            {formatUSD(amount)}
-          </span>
+          <span className="font-bold text-yellow-400">{formatUSD(amount)}</span>
         </div>
       </div>
 

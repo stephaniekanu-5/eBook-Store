@@ -1,14 +1,14 @@
 import { useState, useContext, useEffect, useMemo } from "react";
-import { useBooks }from "../context/BookContext";
+import { useBooks } from "../context/BookContext";
 import SearchBar from "../components/SearchBar";
 import { CartContext } from "../context/CartContext";
-import { getBookId, isSameBook, } from "../utils/bookIds";
+import { getBookId, isSameBook } from "../utils/bookIds";
 import Hero from "../components/Hero";
 import CategoryFilter from "../components/CategoryFilter";
 import FeatureCarousel from "../components/FeatureCarousel";
 import Testimonials from "../components/Testimonials";
 import FeaturedTitles from "../components/FeaturedTitles";
-import FeaturedTabs from "../components/FeaturedTabs"; 
+import FeaturedTabs from "../components/FeaturedTabs";
 import BookSections from "../components/BookSections";
 import BookCard from "../components/BookCard";
 
@@ -29,8 +29,7 @@ export default function Home() {
         book.author.toLowerCase().includes(q) ||
         book.category.toLowerCase().includes(q);
 
-      const matchesCategory =
-        category === "All" || book.category === category;
+      const matchesCategory = category === "All" || book.category === category;
 
       return matchesSearch && matchesCategory;
     });
@@ -45,18 +44,12 @@ export default function Home() {
 
   //  ❤️ Wishlist toggle
   const toggleWishlist = (book) => {
-    const bookId =
-      getBookId(book);
+    const bookId = getBookId(book);
 
     setWishlist((prev) =>
-      prev.find((b) =>
-        isSameBook(b, bookId)
-      )
-        ? prev.filter(
-            (b) =>
-              !isSameBook(b, bookId)
-          )
-        : [...prev, book]
+      prev.find((b) => isSameBook(b, bookId))
+        ? prev.filter((b) => !isSameBook(b, bookId))
+        : [...prev, book],
     );
   };
 
@@ -72,38 +65,42 @@ export default function Home() {
       {/* Content */}
       <div className="relative z-10">
         {/* HERO */}
-        <section >
+        <section>
           <Hero />
         </section>
         {/* FEATURED SECTION */}
-       <section className="max-w-70xl mx-auto mb-5">
+        <section className="max-w-70xl mx-auto mb-5">
           {/* Apple-style container */}
           <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-4 mb-5">
-            <FeatureCarousel /> 
+            <FeatureCarousel />
           </div>
           {/* TRUST STRIP (NEW SaaS FEEL) */}
           <section className="text-center text-gray-500 text-sm mb-2 px-6">
-            Join over 50,000 readers who have found their next great read with UketBooks.
+            Join over 50,000 readers who have found their next great read with
+            UketBooks.
           </section>
           <section className="border-white/10 rounded-3xl">
-            <FeaturedTitles /> 
+            <FeaturedTitles />
           </section>
           <section className="border-white/10 rounded-3xl">
             <BookSections />
-          </section >
+          </section>
           {/* <section className="border-white/10 rounded-3xl">
           <FeaturedBooks />
           </section> */}
         </section>
         {/* FINAL CTA SECTION (SAAS STYLE) */}
         <section className="max-w-70xl mx-auto mb-1">
-          <div className="text-center bg-gradient-to-r from-purple-900/20 via-white/5 to-purple-900/20
-            border border-white/10 rounded-3xl p-12 md:p-16 backdrop-blur-xl">
+          <div
+            className="text-center bg-gradient-to-r from-purple-900/20 via-white/5 to-purple-900/20
+            border border-white/10 rounded-3xl p-12 md:p-16 backdrop-blur-xl"
+          >
             <h2 className="text-3xl md:text-5xl font-black mb-2">
               Start reading smarter today
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto mb-2">
-              Join thousands of readers accessing premium ebooks instantly with a seamless experience.
+              Join thousands of readers accessing premium ebooks instantly with
+              a seamless experience.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -125,7 +122,6 @@ export default function Home() {
         <section className="max-w-70xl mx-auto px-6">
           <Testimonials />
         </section>
-
       </div>
     </div>
   );

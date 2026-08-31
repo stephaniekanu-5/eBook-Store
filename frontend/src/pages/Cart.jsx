@@ -1,8 +1,14 @@
 import { useContext, useMemo, useState } from "react";
-import { FaLock, FaTag, FaCreditCard, FaShieldAlt, FaCheckCircle,} from "react-icons/fa";
+import {
+  FaLock,
+  FaTag,
+  FaCreditCard,
+  FaShieldAlt,
+  FaCheckCircle,
+} from "react-icons/fa";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
-import { getBookId,} from "../utils/bookIds";
+import { getBookId } from "../utils/bookIds";
 import { useCart } from "../context/CartContext";
 
 export default function Cart() {
@@ -15,90 +21,65 @@ export default function Cart() {
     totalPrice,
     totalItems,
   } = useContext(CartContext);
-const navigate = useNavigate();
-const [discount, setDiscount] = useState(0);
-const hasInvalidItems = cart.some(
-  (item) => !item._id
-);
-const subtotal = useMemo(
+  const navigate = useNavigate();
+  const [discount, setDiscount] = useState(0);
+  const hasInvalidItems = cart.some((item) => !item._id);
+  const subtotal = useMemo(
     () =>
       cart.reduce(
         (sum, item) =>
-          sum +
-          Number(item.price || 0) *
-            Number(item.quantity || 1),
-        0
+          sum + Number(item.price || 0) * Number(item.quantity || 1),
+        0,
       ),
-    [cart]
+    [cart],
   );
-  const finalAmount = Math.max( subtotal - discount, 0 );
+  const finalAmount = Math.max(subtotal - discount, 0);
 
-const totalBooks = useMemo(
-    () =>
-      cart.reduce(
-        (sum, item) =>
-          sum + Number(item.quantity || 1),
-        0
-      ),
-    [cart]
+  const totalBooks = useMemo(
+    () => cart.reduce((sum, item) => sum + Number(item.quantity || 1), 0),
+    [cart],
   );
-const formatPrice = (price) =>
-  Number(price).toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+  const formatPrice = (price) =>
+    Number(price).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
   return (
-    <div className="min-h-screen bg-black text-white px-4 py-10">        
+    <div className="min-h-screen bg-black text-white px-4 py-10">
       <section className="bg-gradient-to-b from-gray-900 to-black border border-white/10 rounded-3xl p-8 shadow-2xl">
-      
         {/* HEADER */}
-      
+
         <div className="flex items-center justify-between mb-8">
-      
           <div>
-      
-            <h1 className="text-3xl font-black">
-              Cart Summary
-            </h1>
-      
+            <h1 className="text-3xl font-black">Cart Summary</h1>
+
             <p className="text-gray-400 mt-2">
               Review your purchase before completing payment.
             </p>
-      
           </div>
-      
+
           <div className="bg-yellow-400/10 border border-yellow-400/20 rounded-2xl px-5 py-3 text-center">
-      
             <p className="text-xs uppercase tracking-wider text-gray-400">
               Books
             </p>
-      
-            <p className="text-2xl font-black text-yellow-400">
-              {totalBooks}
-            </p>
-      
+
+            <p className="text-2xl font-black text-yellow-400">{totalBooks}</p>
           </div>
-      
         </div>
-      
+
         {/* EMPTY CART */}
-      
+
         {cart.length === 0 ? (
-      
           <div className="rounded-3xl bg-gray-800/60 border border-white/10 py-20 text-center">
-      
-            <div className="text-7xl mb-6">
-              📚
-            </div>
-      
-            <h2 className="text-2xl font-bold">
-              Your cart is empty
-            </h2>
-      
+            <div className="text-7xl mb-6">📚</div>
+
+            <h2 className="text-2xl font-bold">Your cart is empty</h2>
+
             <p className="text-gray-400 mt-3 max-w-sm mx-auto">
-              Browse our library and add amazing ebooks to begin your learning journey.
+              Browse our library and add amazing ebooks to begin your learning
+              journey.
             </p>
-      
+
             <button
               onClick={() => navigate("/books")}
               className="mt-8 bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-8 py-4 rounded-2xl transition"
@@ -127,20 +108,16 @@ const formatPrice = (price) =>
                           <h3 className="font-bold text-lg line-clamp-2">
                             {item.title}
                           </h3>
-                          <p className="text-gray-400 mt-1">
-                            {item.author}
-                          </p>
+                          <p className="text-gray-400 mt-1">{item.author}</p>
                         </div>
                         <span className="bg-yellow-400 text-black text-xs font-bold px-3 py-2 rounded-xl h-fit">
                           x{item.quantity}
                         </span>
                       </div>
-                      
+
                       <div className="mt-5 flex justify-between items-center">
                         <div>
-                          <p className="text-sm text-gray-500">
-                            Unit Price
-                          </p>
+                          <p className="text-sm text-gray-500">Unit Price</p>
                           <p className="text-yellow-400 font-bold">
                             {formatPrice(item.price)}
                           </p>
@@ -174,13 +151,9 @@ const formatPrice = (price) =>
                           </button>
                         </div>
                         <div className="text-right">
-                          <p className="text-sm text-gray-500">
-                            Total
-                          </p>
+                          <p className="text-sm text-gray-500">Total</p>
                           <p className="text-xl font-black">
-                            {formatPrice(
-                              item.price * item.quantity
-                            )}
+                            {formatPrice(item.price * item.quantity)}
                           </p>
                         </div>
                       </div>
@@ -193,24 +166,16 @@ const formatPrice = (price) =>
             <div className="border-t border-white/10 mt-8 pt-8 space-y-5">
               <div className="flex justify-between text-gray-400">
                 <span>Subtotal</span>
-                <span>
-                  {formatPrice(subtotal)}
-                </span>
+                <span>{formatPrice(subtotal)}</span>
               </div>
               {discount > 0 && (
                 <div className="flex justify-between text-green-400 font-semibold">
-                  <span>
-                    Discount
-                  </span>
-                  <span>
-                    -{formatPrice(discount)}
-                  </span>
+                  <span>Discount</span>
+                  <span>-{formatPrice(discount)}</span>
                 </div>
               )}
               <div className="flex justify-between items-center pt-5 border-t border-white/10">
-                <span className="text-xl font-bold">
-                  Total
-                </span>
+                <span className="text-xl font-bold">Total</span>
                 <span className="text-4xl font-black text-yellow-400">
                   {formatPrice(finalAmount)}
                 </span>
@@ -236,9 +201,7 @@ const formatPrice = (price) =>
             <div className="mt-8 bg-green-500/10 border border-green-500/20 rounded-3xl p-5">
               <div className="flex items-center gap-3 mb-4">
                 <FaShieldAlt className="text-green-400 text-2xl" />
-                <h3 className="font-bold">
-                  Secure Checkout
-                </h3>
+                <h3 className="font-bold">Secure Checkout</h3>
               </div>
               <div className="space-y-3 text-sm text-gray-300">
                 <div className="flex items-center gap-3">

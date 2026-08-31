@@ -50,10 +50,7 @@ export default function Profile() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(
-      "ebook-user",
-      JSON.stringify(user)
-    );
+    localStorage.setItem("ebook-user", JSON.stringify(user));
   }, [user]);
 
   const handleChange = (e) => {
@@ -65,12 +62,9 @@ export default function Profile() {
 
   return (
     <main className="min-h-screen bg-white text-black dark:bg-black dark:text-white px-6 py-12">
-
       {/* HEADER */}
       <div className="max-w-6xl mx-auto mb-10">
-        <h1 className="text-4xl md:text-5xl font-black">
-          My Profile
-        </h1>
+        <h1 className="text-4xl md:text-5xl font-black">My Profile</h1>
 
         <p className="text-gray-400 mt-3 text-lg">
           Manage your digital library account and downloads.
@@ -78,7 +72,6 @@ export default function Profile() {
       </div>
 
       <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8">
-
         {/* PROFILE CARD */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -92,10 +85,8 @@ export default function Profile() {
           //   p-8
           // "
         >
-
           {/* TOP */}
           <div className="flex flex-col md:flex-row md:items-center gap-6 mb-10">
-
             {/* Avatar */}
             <div className="relative">
               <img
@@ -137,30 +128,28 @@ export default function Profile() {
 
             {/* INFO */}
             <div>
-              <h2 className="text-3xl font-bold">
-                {user.name || "Your Name"}
-              </h2>
+              <h2 className="text-3xl font-bold">{user.name || "Your Name"}</h2>
 
               <p className="text-gray-400 mt-2">
                 {user.email || "your@email.com"}
               </p>
 
-              <span className="
+              <span
+                className="
                 inline-block mt-3
                 bg-purple-600/20
                 text-purple-300
                 px-4 py-1 rounded-full
                 text-sm font-semibold
-              ">
+              "
+              >
                 {user.role}
               </span>
             </div>
-
           </div>
 
           {/* FORM */}
           <div className="space-y-6">
-
             {/* NAME */}
             <div>
               <label className="text-gray-400 flex items-center gap-2 mb-2">
@@ -241,9 +230,7 @@ export default function Profile() {
 
             {/* BIO */}
             <div>
-              <label className="text-gray-400 mb-2 block">
-                Bio
-              </label>
+              <label className="text-gray-400 mb-2 block">Bio</label>
 
               {isEditing ? (
                 <textarea
@@ -259,15 +246,13 @@ export default function Profile() {
                 />
               ) : (
                 <div className="bg-black/30 rounded-2xl px-4 py-3 text-gray-300">
-                  {user.bio ||
-                    "Tell readers something about yourself."}
+                  {user.bio || "Tell readers something about yourself."}
                 </div>
               )}
             </div>
 
             {/* BUTTONS */}
             <div className="flex flex-wrap gap-4 pt-4">
-
               {isEditing ? (
                 <button
                   onClick={() => setIsEditing(false)}
@@ -296,9 +281,7 @@ export default function Profile() {
                 </button>
               )}
             </div>
-
           </div>
-
         </motion.div>
 
         {/* SIDEBAR */}
@@ -307,29 +290,24 @@ export default function Profile() {
           animate={{ opacity: 1, x: 0 }}
           className="space-y-6"
         >
-
           {/* STATS */}
-          <div className="
+          <div
+            className="
             bg-white/5 backdrop-blur-xl
             border border-white/10
             rounded-3xl p-6
-          ">
-
-            <h3 className="text-xl font-bold mb-6">
-              Account Stats
-            </h3>
+          "
+          >
+            <h3 className="text-xl font-bold mb-6">Account Stats</h3>
 
             <div className="space-y-4">
-
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2 text-gray-400">
                   <FiBook />
                   Purchased Books
                 </div>
 
-                <span className="font-bold text-xl">
-                  {savedBooks.length}
-                </span>
+                <span className="font-bold text-xl">{savedBooks.length}</span>
               </div>
 
               <div className="flex justify-between items-center">
@@ -338,28 +316,22 @@ export default function Profile() {
                   Downloads
                 </div>
 
-                <span className="font-bold text-xl">
-                  {downloads}
-                </span>
+                <span className="font-bold text-xl">{downloads}</span>
               </div>
-
             </div>
-
           </div>
 
           {/* QUICK ACCESS */}
-          <div className="
+          <div
+            className="
             bg-white/5 backdrop-blur-xl
             border border-white/10
             rounded-3xl p-6
-          ">
-
-            <h3 className="text-xl font-bold mb-6">
-              Quick Access
-            </h3>
+          "
+          >
+            <h3 className="text-xl font-bold mb-6">Quick Access</h3>
 
             <div className="flex flex-col gap-3">
-
               <Link
                 to="/mylibrary"
                 className="

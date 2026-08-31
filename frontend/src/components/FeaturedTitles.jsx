@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { useRef, useEffect } from "react";
@@ -13,13 +13,11 @@ export default function FeaturedTitles() {
   const { books } = useBooks();
 
   const featuredBooks = useMemo(() => {
-   return books
-      .filter(book => book.featured)
-      .slice(0, 12);
+    return books.filter((book) => book.featured).slice(0, 12);
   }, [books]);
 
   const scroll = (direction) => {
-   if (!scrollRef.current) return;
+    if (!scrollRef.current) return;
     scrollRef.current.scrollBy({
       left: direction === "left" ? -400 : 400,
       behavior: "smooth",
@@ -28,34 +26,31 @@ export default function FeaturedTitles() {
   const canScroll = featuredBooks.length > 4;
 
   useEffect(() => {
-   if (!featuredBooks.length) return;
+    if (!featuredBooks.length) return;
 
-   const container = scrollRef.current;
+    const container = scrollRef.current;
 
-   if (!container) return;
+    if (!container) return;
 
-   const interval = setInterval(() => {
-
+    const interval = setInterval(() => {
       if (
-         container.scrollLeft + container.clientWidth >=
-         container.scrollWidth - 10
+        container.scrollLeft + container.clientWidth >=
+        container.scrollWidth - 10
       ) {
-         container.scrollTo({
-            left: 0,
-            behavior: "smooth",
-         });
+        container.scrollTo({
+          left: 0,
+          behavior: "smooth",
+        });
       } else {
-         container.scrollBy({
-            left: 250,
-            behavior: "smooth",
-         });
+        container.scrollBy({
+          left: 250,
+          behavior: "smooth",
+        });
       }
+    }, 3000);
 
-   }, 3000);
-
-   return () => clearInterval(interval);
-
-}, [featuredBooks.length]);
+    return () => clearInterval(interval);
+  }, [featuredBooks.length]);
 
   return (
     <section className="bg-transparent text-white p-2 md:p-2 rounded-3xl border border-white/10">
@@ -82,7 +77,7 @@ export default function FeaturedTitles() {
             </button>
 
             <button
-              disabled={!canScroll} 
+              disabled={!canScroll}
               onClick={() => scroll("right")}
               className="bg-gray-900 hover:bg-yellow-400 hover:text-black transition p-3 rounded-full"
             >
@@ -96,8 +91,8 @@ export default function FeaturedTitles() {
             No featured books available.
           </div>
         ) : (
-
-          <div ref={scrollRef}
+          <div
+            ref={scrollRef}
             className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4 p-2"
           >
             {featuredBooks.map((book, index) => (
@@ -114,7 +109,7 @@ export default function FeaturedTitles() {
               >
                 {/* COVER */}
                 <div className="overflow-hidden relative">
-                  <img 
+                  <img
                     loading="lazy"
                     src={book.cover}
                     alt={book.title}
@@ -132,9 +127,7 @@ export default function FeaturedTitles() {
                     {book.title}
                   </h3>
 
-                  <p className="text-gray-400 text-sm mt-1">
-                    {book.author}
-                  </p>
+                  <p className="text-gray-400 text-sm mt-1">{book.author}</p>
                   <p className="text-xs text-yellow-400 mt-1">
                     {book.category}
                   </p>

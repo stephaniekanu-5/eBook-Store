@@ -1,18 +1,9 @@
-import {
-  Navigate,
-} from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-import {
-  useAuth,
-} from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 
-export default function AdminRoute({
-  children,
-}) {
-  const {
-    user,
-    loading,
-  } = useAuth();
+export default function AdminRoute({ children }) {
+  const { user, loading } = useAuth();
 
   if (loading) {
     return (
@@ -33,24 +24,12 @@ export default function AdminRoute({
 
   // Not logged in
   if (!user) {
-    return (
-      <Navigate
-        to="/login"
-        replace
-      />
-    );
+    return <Navigate to="/login" replace />;
   }
 
   // Not admin
-  if (
-    user.role !== "admin"
-  ) {
-    return (
-      <Navigate
-        to="/"
-        replace
-      />
-    );
+  if (user.role !== "admin") {
+    return <Navigate to="/" replace />;
   }
 
   return children;

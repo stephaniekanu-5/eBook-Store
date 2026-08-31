@@ -1,10 +1,10 @@
 import { useState, useContext, useEffect, useMemo } from "react";
-import { useBooks }from "../context/BookContext";
+import { useBooks } from "../context/BookContext";
 import BookCard from "../components/BookCard";
 import SearchBar from "../components/SearchBar";
 import CategoryFilter from "../components/CategoryFilter";
 import { CartContext } from "../context/CartContext";
-import { getBookId, isSameBook, } from "../utils/bookIds";
+import { getBookId, isSameBook } from "../utils/bookIds";
 import BookSections from "../components/BookSections";
 import FeaturedTabs from "../components/FeaturedTabs";
 import Hero from "../components/Hero";
@@ -18,7 +18,7 @@ export default function Books() {
   const { books } = useBooks();
   // 🔥 Smart search + filter system
   const filteredBooks = useMemo(() => {
-  const q = search.toLowerCase();
+    const q = search.toLowerCase();
 
     return books.filter((book) => {
       const matchesSearch =
@@ -28,9 +28,8 @@ export default function Books() {
 
       const matchesCategory =
         category === "All" ||
-        book.category?.trim().toLowerCase() ===
-          category.trim().toLowerCase();
-          
+        book.category?.trim().toLowerCase() === category.trim().toLowerCase();
+
       return matchesSearch && matchesCategory;
     });
   }, [books, search, category]);
@@ -44,18 +43,12 @@ export default function Books() {
 
   // ❤️ Wishlist toggle
   const toggleWishlist = (book) => {
-    const bookId =
-      getBookId(book);
+    const bookId = getBookId(book);
 
     setWishlist((prev) =>
-      prev.find((b) =>
-        isSameBook(b, bookId)
-      )
-        ? prev.filter(
-            (b) =>
-              !isSameBook(b, bookId)
-          )
-        : [...prev, book]
+      prev.find((b) => isSameBook(b, bookId))
+        ? prev.filter((b) => !isSameBook(b, bookId))
+        : [...prev, book],
     );
   };
 
@@ -66,38 +59,33 @@ export default function Books() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-
       {/* HERO BANNER */}
       <div className="relative flex items-center justify-center text-center">
         <div
-        className="absolute inset-0 bg-cover bg-center scale-100 transition-transform duration-500 hover:scale-105"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1400&q=80')",
-        }}
-      />
+          className="absolute inset-0 bg-cover bg-center scale-100 transition-transform duration-500 hover:scale-105"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1400&q=80')",
+          }}
+        />
         <SearchBar search={search} setSearch={setSearch} books={books} />
       </div>
-       <section className="p-2">
-          <FeaturedTabs />
-       </section>
+      <section className="p-2">
+        <FeaturedTabs />
+      </section>
       {/* CATEGORY FILTER */}
       <section className="p-3">
-      <CategoryFilter category={category} setCategory={setCategory} />
+        <CategoryFilter category={category} setCategory={setCategory} />
       </section>
       {/* RESULTS INFO */}
       <div className="px-4 md:px-8 text-yellow-400 text-sm mb-4">
         Showing {visibleBooks.length} of {filteredBooks.length} books
       </div>
 
-      {/* BOOK GRID */} 
+      {/* BOOK GRID */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-2 p-3">
         {filteredBooks.map((book) => (
-          <BookCard
-            key={book._id}
-            book={book}
-            addToCart={addToCart}
-          />
+          <BookCard key={book._id} book={book} addToCart={addToCart} />
         ))}
       </div>
 
@@ -112,7 +100,6 @@ export default function Books() {
           </button>
         </div>
       )}
-
     </div>
   );
 }

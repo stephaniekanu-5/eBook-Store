@@ -47,15 +47,12 @@ export default function Cookies() {
 
   return (
     <main className="min-h-screen bg-black text-white">
-
       {/* Hero */}
       <section className="relative overflow-hidden py-2 px-6 border-b border-white/10">
-
         <div className="absolute -top-40 left-0 w-96 h-96 bg-yellow-400/10 blur-3xl rounded-full" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-yellow-400/10 blur-3xl rounded-full" />
 
         <div className="relative max-w-5xl mx-auto text-center">
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -64,7 +61,7 @@ export default function Cookies() {
             🍪Uketbooks Cookies Policy
           </motion.div>
 
-           {/* <motion.h1
+          {/* <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-7xl font-black"
@@ -82,17 +79,13 @@ export default function Cookies() {
             browsing experience, remember your preferences, and keep your
             account secure.
           </motion.p>
-
         </div>
-
       </section>
 
       {/* Cookie Types */}
 
       <section className="py-16 px-6">
-
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-
           <div className="bg-gray-900 border border-white/10 rounded-3xl p-6 text-center hover:border-yellow-400/40 transition">
             <div className="text-4xl mb-4">🔐</div>
             <h3 className="font-bold">Essential</h3>
@@ -124,19 +117,14 @@ export default function Cookies() {
               Used only if advertising is enabled.
             </p>
           </div>
-
         </div>
-
       </section>
 
       {/* Policy Sections */}
 
       <section className="px-6 pb-20">
-
         <div className="max-w-5xl mx-auto space-y-8">
-
           {sections.map((section, index) => (
-
             <motion.div
               key={section.title}
               initial={{ opacity: 0, y: 30 }}
@@ -152,31 +140,23 @@ export default function Cookies() {
                 {section.title}
               </h2>
 
-              <p className="text-gray-300 leading-8">
-                {section.content}
-              </p>
-
+              <p className="text-gray-300 leading-8">{section.content}</p>
             </motion.div>
-
           ))}
-
         </div>
-
       </section>
 
       {/* CTA */}
 
       <section className="px-6 pb-20">
-
         <div className="max-w-5xl mx-auto bg-gradient-to-r from-yellow-400 to-yellow-300 rounded-3xl p-10 text-center text-black">
-
           <h2 className="text-3xl md:text-4xl font-black mb-4">
             Questions About Cookies?
           </h2>
 
           <p className="max-w-2xl mx-auto mb-8 text-black/80 leading-7">
-            If you have questions about how cookies are used on UketBooks,
-            we're happy to help explain our practices.
+            If you have questions about how cookies are used on UketBooks, we're
+            happy to help explain our practices.
           </p>
 
           <Link
@@ -185,11 +165,8 @@ export default function Cookies() {
           >
             Contact Support
           </Link>
-
         </div>
-
       </section>
-
     </main>
   );
 }

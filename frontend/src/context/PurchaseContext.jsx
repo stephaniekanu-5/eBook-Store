@@ -1,82 +1,37 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-import {
-  getBookId,
-} from "../utils/bookIds";
+import { getBookId } from "../utils/bookIds";
 
-const PurchaseContext =
-  createContext();
+const PurchaseContext = createContext();
 
-export function PurchaseProvider({
-  children,
-}) {
+export function PurchaseProvider({ children }) {
+  const [purchases, setPurchases] = useState(() => {
+    const saved = localStorage.getItem("uketbooks-purchases");
 
-  const [purchases,
-    setPurchases] =
-    useState(() => {
-
-      const saved =
-        localStorage.getItem(
-          "uketbooks-purchases"
-        );
-
-      return saved
-        ? JSON.parse(saved)
-        : [];
-    });
+    return saved ? JSON.parse(saved) : [];
+  });
 
   /* SAVE PURCHASES */
   useEffect(() => {
-
-    localStorage.setItem(
-      "uketbooks-purchases",
-      JSON.stringify(purchases)
-    );
-
+    localStorage.setItem("uketbooks-purchases", JSON.stringify(purchases));
   }, [purchases]);
 
   /* ADD PURCHASE */
-  const addPurchase = (
-    books
-  ) => {
-
+  const addPurchase = (books) => {
     setPurchases((prev) => {
+      const existingIds = prev.map((item) => getBookId(item));
 
-      const existingIds =
-        prev.map(
-          (item) => getBookId(item)
-        );
+      const newBooks = books.filter(
+        (book) => !existingIds.includes(getBookId(book)),
+      );
 
-      const newBooks =
-        books.filter(
-          (book) =>
-            !existingIds.includes(
-              getBookId(book)
-            )
-        );
-
-      return [
-        ...prev,
-        ...newBooks,
-      ];
+      return [...prev, ...newBooks];
     });
   };
 
   /* CHECK OWNERSHIP */
-  const hasPurchased = (
-    bookId
-  ) => {
-
-    return purchases.some(
-      (book) =>
-        String(getBookId(book)) ===
-        String(bookId)
-    );
+  const hasPurchased = (bookId) => {
+    return purchases.some((book) => String(getBookId(book)) === String(bookId));
   };
 
   return (
@@ -92,8 +47,4 @@ export function PurchaseProvider({
   );
 }
 
-export const usePurchases =
-  () =>
-    useContext(
-      PurchaseContext
-    );
+export const usePurchases = () => useContext(PurchaseContext);

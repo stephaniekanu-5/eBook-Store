@@ -3,9 +3,7 @@ import { useState } from "react";
 
 import PreviewModal from "../components/PreviewModal";
 import { useBooks } from "../context/BookContext";
-import {
-  isSameBook,
-} from "../utils/bookIds";
+import { isSameBook } from "../utils/bookIds";
 
 export default function PreviewPage() {
   const { id } = useParams();
@@ -14,9 +12,7 @@ export default function PreviewPage() {
 
   const [isOpen, setIsOpen] = useState(true);
 
-  const book = books.find(
-    (b) => isSameBook(b, id)
-  );
+  const book = books.find((b) => isSameBook(b, id));
 
   const closeModal = () => {
     setIsOpen(false);
@@ -35,13 +31,7 @@ export default function PreviewPage() {
 
   return (
     <div className="min-h-screen bg-black">
-
-      <PreviewModal
-        isOpen={isOpen}
-        closeModal={closeModal}
-        book={book}
-      />
-
+      <PreviewModal isOpen={isOpen} closeModal={closeModal} book={book} />
     </div>
   );
 }

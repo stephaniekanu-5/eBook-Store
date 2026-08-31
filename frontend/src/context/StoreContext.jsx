@@ -1,8 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import {
-  getBookId,
-  isSameBook,
-} from "../utils/bookIds";
+import { getBookId, isSameBook } from "../utils/bookIds";
 
 const StoreContext = createContext();
 
@@ -24,11 +21,7 @@ export function StoreProvider({ children }) {
 
   // Remove book from cart
   const removeFromCart = (id) => {
-    setCart((prev) =>
-      prev.filter(
-        (b) => !isSameBook(b, id)
-      )
-    );
+    setCart((prev) => prev.filter((b) => !isSameBook(b, id)));
   };
 
   return (

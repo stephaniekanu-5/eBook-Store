@@ -1,15 +1,32 @@
-import {Link, useNavigate, useLocation,} from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
-import {useContext, useState, useEffect, useRef,} from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 
-import {CartContext,} from "../context/CartContext";
+import { CartContext } from "../context/CartContext";
 
-import {FaMoon, FaSun, FaHome, FaBook, FaUser, FaShoppingCart, FaInfoCircle, FaEnvelope, FaQuestionCircle, FaCommentDots, FaShieldAlt, FaFileContract, FaBookOpen, FaTachometerAlt, FaSignOutAlt, FaCookie,} from "react-icons/fa";
+import {
+  FaMoon,
+  FaSun,
+  FaHome,
+  FaBook,
+  FaUser,
+  FaShoppingCart,
+  FaInfoCircle,
+  FaEnvelope,
+  FaQuestionCircle,
+  FaCommentDots,
+  FaShieldAlt,
+  FaFileContract,
+  FaBookOpen,
+  FaTachometerAlt,
+  FaSignOutAlt,
+  FaCookie,
+} from "react-icons/fa";
 
-import {useTheme,} from "../context/ThemeContext";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Navbar() {
-  const {totalItems,} = useContext(CartContext);
+  const { totalItems } = useContext(CartContext);
 
   const [open, setOpen] = useState(false);
 
@@ -19,33 +36,21 @@ export default function Navbar() {
 
   const menuRef = useRef();
 
-  const { darkMode, toggleTheme,} = useTheme();
+  const { darkMode, toggleTheme } = useTheme();
 
   // =========================================
   // CLOSE MENU ON OUTSIDE CLICK
   // =========================================
   useEffect(() => {
-    const handleClickOutside =
-      (e) => {
-        if (
-          menuRef.current &&
-          !menuRef.current.contains(
-            e.target
-          )
-        ) {
-          setOpen(false);
-        }
-      };
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
 
-    document.addEventListener(
-      "mousedown",
-      handleClickOutside
-    );
+    document.addEventListener("mousedown", handleClickOutside);
 
-    return () => document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   // =========================================
@@ -84,17 +89,13 @@ export default function Navbar() {
     {
       name: "Dashboard",
       path: "/dashboard",
-      icon: (
-        <FaTachometerAlt />
-      ),
+      icon: <FaTachometerAlt />,
     },
 
     {
       name: "About Us",
       path: "/about",
-      icon: (
-        <FaInfoCircle />
-      ),
+      icon: <FaInfoCircle />,
     },
 
     {
@@ -106,49 +107,37 @@ export default function Navbar() {
     {
       name: "Help Center",
       path: "/help",
-      icon: (
-        <FaQuestionCircle />
-      ),
+      icon: <FaQuestionCircle />,
     },
 
     {
       name: "Feedback",
       path: "/feedback",
-      icon: (
-        <FaCommentDots />
-      ),
+      icon: <FaCommentDots />,
     },
 
     {
       name: "FAQ ",
       path: "/faq",
-      icon: (
-        <FaQuestionCircle />
-      ),
+      icon: <FaQuestionCircle />,
     },
 
     {
       name: "Terms of Service",
       path: "/terms",
-      icon: (
-        <FaFileContract />
-      ),
+      icon: <FaFileContract />,
     },
 
     {
       name: "Privacy Policy",
       path: "/privacy",
-      icon: (
-        <FaShieldAlt />
-      ),
+      icon: <FaShieldAlt />,
     },
     {
       name: "Cookies Policy",
       path: "/Cookies",
-      icon: (
-        <FaCookie />
-      ),
-    }
+      icon: <FaCookie />,
+    },
   ];
 
   return (
@@ -229,9 +218,7 @@ export default function Navbar() {
         >
           {/* THEME TOGGLE */}
           <button
-            onClick={
-              toggleTheme
-            }
+            onClick={toggleTheme}
             className={`
               w-11
               h-11
@@ -343,21 +330,19 @@ export default function Navbar() {
             to="/profile"
             className={` w-11 h-11 rounded-full flex items-center justify-center border transition-all duration-300
               ${
-                isActive(
-                  "/profile"
-                )
+                isActive("/profile")
                   ? `
                     bg-purple-600
                     border-purple-600
                     text-white
                   `
                   : darkMode
-                  ? `
+                    ? `
                     bg-white/10
                     border-white/10
                     hover:bg-white/20
                   `
-                  : `
+                    : `
                     bg-black/5
                     border-black/10
                     hover:bg-black/10
@@ -370,9 +355,7 @@ export default function Navbar() {
 
           {/* MENU BUTTON */}
           <button
-            onClick={() =>
-              setOpen(!open)
-            }
+            onClick={() => setOpen(!open)}
             className={`
               w-11
               h-11
@@ -478,17 +461,12 @@ export default function Navbar() {
               gap-1
             "
           >
-            {navLinks.map(
-              (link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() =>
-                    setOpen(
-                      false
-                    )
-                  }
-                  className={`
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={() => setOpen(false)}
+                className={`
                     flex
                     items-center
                     gap-3
@@ -502,44 +480,33 @@ export default function Navbar() {
                     duration-200
 
                     ${
-                      isActive(
-                        link.path
-                      )
+                      isActive(link.path)
                         ? `
                           bg-purple-600
                           text-white
                         `
                         : darkMode
-                        ? `
+                          ? `
                           hover:bg-white/10
                         `
-                        : `
+                          : `
                           hover:bg-black/5
                         `
                     }
                   `}
-                >
-                  <span>
-                    {link.icon}
-                  </span>
+              >
+                <span>{link.icon}</span>
 
-                  <span>
-                    {link.name}
-                  </span>
-                </Link>
-              )
-            )}
+                <span>{link.name}</span>
+              </Link>
+            ))}
 
             {/* LOGOUT */}
             <button
               onClick={() => {
-                localStorage.removeItem(
-                  "authToken"
-                );
+                localStorage.removeItem("authToken");
 
-                navigate(
-                  "/login"
-                );
+                navigate("/login");
               }}
               className="
                 flex
@@ -561,7 +528,6 @@ export default function Navbar() {
               "
             >
               <FaSignOutAlt />
-
               Logout
             </button>
           </div>

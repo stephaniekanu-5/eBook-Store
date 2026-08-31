@@ -1,48 +1,51 @@
-import { useState, useRef, useEffect, useMemo} from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Star,} from "lucide-react";
-import {useBooks,} from "../context/BookContext";
-import {getBookId,} from "../utils/bookIds";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { useBooks } from "../context/BookContext";
+import { getBookId } from "../utils/bookIds";
 
 export default function FeaturedTabs() {
   const { books } = useBooks();
   const [activeTab, setActiveTab] = useState("featured");
   const scrollRef = useRef(null);
   const tabs = [
-  { id: "featured", label: "Featured" },
-  { id: "justArrived", label: "Just Arrived" },
-  { id: "bestSeller", label: "Best Sellers" },
-  { id: "recommended", label: "Recommended" },
-  { id: "deals", label: "Deals" },
-  { id: "comingSoon", label: "Coming Soon!" },
-];
+    { id: "featured", label: "Featured" },
+    { id: "justArrived", label: "Just Arrived" },
+    { id: "bestSeller", label: "Best Sellers" },
+    { id: "recommended", label: "Recommended" },
+    { id: "deals", label: "Deals" },
+    { id: "comingSoon", label: "Coming Soon!" },
+  ];
 
-const tabBooks = useMemo(() => ({
-  featured: books.filter(book => book.featured),
-  trending: books.filter(book => book.trending),
-  justArrived: books.filter(book => book.justArrived),
-  bestSeller: books.filter(book => book.bestSeller),
-  recommended: books.filter(book => book.recommended),
-  deals: books.filter(book => book.deals),
-  comingSoon: books.filter(book => book.comingSoon),
-}), [books]);
+  const tabBooks = useMemo(
+    () => ({
+      featured: books.filter((book) => book.featured),
+      trending: books.filter((book) => book.trending),
+      justArrived: books.filter((book) => book.justArrived),
+      bestSeller: books.filter((book) => book.bestSeller),
+      recommended: books.filter((book) => book.recommended),
+      deals: books.filter((book) => book.deals),
+      comingSoon: books.filter((book) => book.comingSoon),
+    }),
+    [books],
+  );
 
-const booksToDisplay = tabBooks[activeTab] || [];
+  const booksToDisplay = tabBooks[activeTab] || [];
 
   useEffect(() => {
-  scrollRef.current?.scrollTo({
-    left: 0,
-    behavior: "smooth",
-  });
-}, [activeTab]);
+    scrollRef.current?.scrollTo({
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [activeTab]);
 
   useEffect(() => {
     if (!booksToDisplay.length) return;
 
     const container = scrollRef.current;
 
-   if (!container) return;
+    if (!container) return;
 
     const interval = setInterval(() => {
       if (
@@ -61,32 +64,28 @@ const booksToDisplay = tabBooks[activeTab] || [];
       }
     }, 3000);
 
-  return () => clearInterval(interval);
-}, [activeTab, booksToDisplay.length]);
+    return () => clearInterval(interval);
+  }, [activeTab, booksToDisplay.length]);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({
-        left:
-          direction === "left"
-            ? -400
-            : 400,
+        left: direction === "left" ? -400 : 400,
         behavior: "smooth",
       });
     }
   };
-const discount =
-  Number(books.originalPrice) > Number(books.price)
-    ? Math.round(
-        ((Number(books.originalPrice) - Number(books.price)) /
-          Number(books.originalPrice)) *
-          100
-      )
-    : 0;
+  const discount =
+    Number(books.originalPrice) > Number(books.price)
+      ? Math.round(
+          ((Number(books.originalPrice) - Number(books.price)) /
+            Number(books.originalPrice)) *
+            100,
+        )
+      : 0;
   return (
     <section className="bg-transparent text-white py-2 px-1">
       <div className="max-w-70xl mx-auto">
-
         {/* HEADER */}
         <div className="text-center mb-4">
           <motion.h2
@@ -132,18 +131,14 @@ const discount =
         {/* CONTROLS */}
         <div className="hidden md:flex gap-3 justify-end mb-4">
           <button
-            onClick={() =>
-              scroll("left")
-            }
+            onClick={() => scroll("left")}
             className="bg-gray-900 hover:bg-yellow-400 hover:text-black transition p-3 rounded-full"
           >
             <ChevronLeft size={22} />
           </button>
 
           <button
-            onClick={() =>
-              scroll("right")
-            }
+            onClick={() => scroll("right")}
             className="bg-gray-900 hover:bg-yellow-400 hover:text-black transition p-3 rounded-full"
           >
             <ChevronRight size={22} />
@@ -163,10 +158,10 @@ const discount =
             booksToDisplay.map((book, index) => (
               <motion.div
                 key={book._id}
-                initial={{opacity: 0, y: 40,}}
-                whileInView={{opacity: 1, y: 0,}}
-                transition={{duration: 0.5, delay: index * 0.1,}}
-                viewport={{once: true,}}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
                 className="min-w-[220px] bg-gray-900 rounded-3xl overflow-hidden border border-white/10 hover:border-yellow-400/50 transition-all group"
               >
                 {/* COVER */}
@@ -178,17 +173,14 @@ const discount =
                     className="w-full h-[300px] object-cover group-hover:scale-105 transition duration-500"
                   />
 
-                  <div className="absolute top-3 right-3 bg-yellow-400 text-black p-2 rounded-full"
-                  >
+                  <div className="absolute top-3 right-3 bg-yellow-400 text-black p-2 rounded-full">
                     {discount > 0 && (
-                    <div className="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold">
-                      -{discount}%
-                    </div>
-                  )}
-                    <Star
-                      size={16}
-                    />
-                  </div>              
+                      <div className="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+                        -{discount}%
+                      </div>
+                    )}
+                    <Star size={16} />
+                  </div>
                 </div>
 
                 {/* CONTENT */}
@@ -197,9 +189,7 @@ const discount =
                     {book.title}
                   </h3>
 
-                  <p className="text-gray-400 text-sm mt-1">
-                    {book.author}
-                  </p>
+                  <p className="text-gray-400 text-sm mt-1">{book.author}</p>
                   <p className="text-xs text-yellow-400 mt-1">
                     {book.category}
                   </p>
@@ -223,7 +213,6 @@ const discount =
             ))
           )}
         </div>
-
       </div>
     </section>
   );

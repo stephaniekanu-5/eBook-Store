@@ -24,19 +24,14 @@ export default function PreviewModal({ isOpen, closeModal, book }) {
       className="bg-gray-950 text-white max-w-5xl mx-auto mt-6 rounded-3xl overflow-hidden shadow-2xl outline-none max-h-[92vh] overflow-y-auto"
       overlayClassName="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"
     >
-
       {/* HEADER */}
       <div className="flex items-center justify-between p-5 border-b border-white/10">
-
         <div>
-          <h2 className="text-2xl font-bold text-yellow-400">
-            {book.title}
-          </h2>
+          <h2 className="text-2xl font-bold text-yellow-400">{book.title}</h2>
           <p className="text-sm text-gray-400">by {book.author}</p>
         </div>
 
         <div className="flex gap-3 items-center">
-
           {/* Wishlist */}
           <button
             onClick={() => setLiked(!liked)}
@@ -54,14 +49,11 @@ export default function PreviewModal({ isOpen, closeModal, book }) {
           >
             <FaTimes />
           </button>
-
         </div>
-
       </div>
 
       {/* BODY */}
       <div className="p-6 space-y-6">
-
         {/* COVER */}
         <div className="flex justify-center">
           <img
@@ -78,7 +70,6 @@ export default function PreviewModal({ isOpen, closeModal, book }) {
 
         {/* SAMPLE PREVIEW SECTION */}
         <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-
           <div className="flex items-center gap-2 mb-3 text-yellow-400">
             <FaBookOpen />
             <h3 className="font-bold">Free Sample Preview</h3>
@@ -88,7 +79,6 @@ export default function PreviewModal({ isOpen, closeModal, book }) {
             {book.sample ||
               "This book includes powerful insights. Upgrade to unlock full chapters and premium content."}
           </p>
-
         </div>
 
         {/* PDF / VIDEO PREVIEW */}
@@ -115,7 +105,6 @@ export default function PreviewModal({ isOpen, closeModal, book }) {
 
         {/* ACTIONS */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-
           <button
             onClick={closeModal}
             className="px-6 py-3 rounded-2xl border border-white/10 hover:bg-white/5 transition"
@@ -137,15 +126,10 @@ export default function PreviewModal({ isOpen, closeModal, book }) {
             }}
             className="px-6 py-3 rounded-2xl bg-yellow-400 hover:bg-yellow-300 text-black font-bold transition"
           >
-            {book._id
-              ? "Buy & Unlock Full Book"
-              : "View Store Catalog"}
+            {book._id ? "Buy & Unlock Full Book" : "View Store Catalog"}
           </button>
-
         </div>
-
       </div>
-
     </Modal>
   );
 }

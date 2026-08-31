@@ -4,8 +4,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useBooks } from "../context/BookContext";
 import BookCard from "./BookCard";
 
-function BookSection({title, description, books = [] }) {
-   const scrollRef = useRef(null);
+function BookSection({ title, description, books = [] }) {
+  const scrollRef = useRef(null);
 
   if (!books?.length)
     return (
@@ -13,7 +13,7 @@ function BookSection({title, description, books = [] }) {
         No books available in this section.
       </p>
     );
-    const scroll = (direction) => {
+  const scroll = (direction) => {
     if (!scrollRef.current) return;
 
     scrollRef.current.scrollBy({
@@ -22,18 +22,16 @@ function BookSection({title, description, books = [] }) {
     });
   };
 
-    return (
+  return (
     <section className="py-5 border-b border-white/10">
-      {/* Header */} 
+      {/* Header */}
       <div className="flex items-center justify-between mb-5">
         <div className="md:text-left">
           <h2 className="text-lg md:text-3xl font-black text-yellow-400">
             {title}
           </h2>
 
-          <p className="text-gray-400 mt-2">
-            {description}
-          </p>
+          <p className="text-gray-400 mt-2">{description}</p>
         </div>
 
         <div className="flex items-center gap-8 mt-4 md:mt-0">
@@ -67,10 +65,7 @@ function BookSection({title, description, books = [] }) {
         className="min-w-full flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
       >
         {books.map((book) => (
-          <div
-            key={book._id}
-            className=" max-w-xs flex-shrink-0"
-          >
+          <div key={book._id} className=" max-w-xs flex-shrink-0">
             <BookCard book={book} />
           </div>
         ))}
@@ -88,13 +83,12 @@ export default function BookSections() {
     comingSoonBooks,
     recommendedBooks,
     dealsBooks,
-
   } = useBooks();
 
   return (
     <section className="bg-transparent text-white p-2">
       <div className="py-10 border-t border-white/10">
-        <BookSection 
+        <BookSection
           title="🆕Just Arrived"
           description="Fresh additions to our bookstore."
           books={justArrivedBooks}

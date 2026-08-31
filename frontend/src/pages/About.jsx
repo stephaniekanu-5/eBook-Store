@@ -97,13 +97,11 @@ export default function About() {
 
   return (
     <main className="bg-black text-white">
-
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 via-transparent to-purple-500/10" />
 
         <div className="max-w-7xl mx-auto px-6 py-24 relative">
-
           <motion.div
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
@@ -116,10 +114,7 @@ export default function About() {
 
             <h1 className="text-5xl md:text-7xl font-black mt-8 leading-tight">
               Empowering Readers Through
-              <span className="text-yellow-400">
-                {" "}
-                Digital Knowledge
-              </span>
+              <span className="text-yellow-400"> Digital Knowledge</span>
             </h1>
 
             <p className="text-gray-400 text-xl mt-8 leading-relaxed">
@@ -128,21 +123,16 @@ export default function About() {
               quality knowledge instantly from anywhere in the world.
             </p>
 
-            <button
-              className="mt-10 bg-yellow-400 hover:bg-yellow-300 text-black px-8 py-4 rounded-2xl font-bold transition"
-            >
+            <button className="mt-10 bg-yellow-400 hover:bg-yellow-300 text-black px-8 py-4 rounded-2xl font-bold transition">
               Browse Library
             </button>
-
           </motion.div>
-
         </div>
       </section>
 
       {/* WHO WE ARE */}
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-
           <motion.img
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -174,7 +164,6 @@ export default function About() {
               everyone.
             </p>
           </motion.div>
-
         </div>
       </section>
 
@@ -182,13 +171,11 @@ export default function About() {
 
       <section className="py-20 px-6 bg-white/[0.02]">
         <div className="max-w-7xl mx-auto">
-
           <h2 className="text-4xl font-black text-center text-yellow-400 mb-14">
             Why Choose UketBooks?
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
             {features.map((feature, index) => (
               <motion.div
                 key={index}
@@ -198,22 +185,14 @@ export default function About() {
                 }}
                 className="bg-gray-900 border border-white/10 rounded-3xl p-8"
               >
-                <div className="text-yellow-400 mb-6">
-                  {feature.icon}
-                </div>
+                <div className="text-yellow-400 mb-6">{feature.icon}</div>
 
-                <h3 className="text-2xl font-bold mb-4">
-                  {feature.title}
-                </h3>
+                <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
 
-                <p className="text-gray-400">
-                  {feature.text}
-                </p>
+                <p className="text-gray-400">{feature.text}</p>
               </motion.div>
             ))}
-
           </div>
-
         </div>
       </section>
 
@@ -221,21 +200,14 @@ export default function About() {
 
       <section className="py-24 px-6 text-center">
         <div className="max-w-4xl mx-auto">
+          <FaRocket size={60} className="mx-auto text-yellow-400 mb-8" />
 
-          <FaRocket
-            size={60}
-            className="mx-auto text-yellow-400 mb-8"
-          />
-
-          <h2 className="text-5xl font-black mb-8">
-            Our Mission
-          </h2>
+          <h2 className="text-5xl font-black mb-8">Our Mission</h2>
 
           <p className="text-2xl text-gray-400 leading-relaxed">
             To make knowledge accessible to everyone through a trusted digital
             bookstore that inspires learning, innovation and lifelong growth.
           </p>
-
         </div>
       </section>
 
@@ -243,13 +215,11 @@ export default function About() {
 
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
-
           <h2 className="text-4xl font-black text-center text-yellow-400 mb-12">
             Explore Popular Categories
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-
             {categories.map((category, index) => (
               <motion.div
                 key={index}
@@ -265,9 +235,7 @@ export default function About() {
                 </h3>
               </motion.div>
             ))}
-
           </div>
-
         </div>
       </section>
 
@@ -275,13 +243,11 @@ export default function About() {
 
       <section className="py-20 bg-white/[0.02] px-6">
         <div className="max-w-6xl mx-auto">
-
           <h2 className="text-4xl font-black text-center text-yellow-400 mb-14">
             How It Works
           </h2>
 
           <div className="grid md:grid-cols-4 gap-8">
-
             {[
               "Browse Books",
               "Purchase Securely",
@@ -298,14 +264,10 @@ export default function About() {
                   size={35}
                 />
 
-                <h3 className="font-bold text-xl">
-                  {step}
-                </h3>
+                <h3 className="font-bold text-xl">{step}</h3>
               </motion.div>
             ))}
-
           </div>
-
         </div>
       </section>
 
@@ -313,7 +275,6 @@ export default function About() {
 
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
-
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -326,34 +287,28 @@ export default function About() {
                 {stat.value}
               </h2>
 
-              <p className="text-gray-400 mt-3">
-                {stat.label}
-              </p>
+              <p className="text-gray-400 mt-3">{stat.label}</p>
             </motion.div>
           ))}
-
         </div>
       </section>
 
       {/* CTA */}
 
       <section className="py-24 px-6 text-center border-t border-white/10">
-
         <h2 className="text-5xl font-black mb-6">
           Start Your Learning Journey Today
         </h2>
 
         <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-          Discover books that inspire, educate and transform your future.
-          Your next great idea could be one book away.
+          Discover books that inspire, educate and transform your future. Your
+          next great idea could be one book away.
         </p>
 
         <button className="mt-10 bg-yellow-400 hover:bg-yellow-300 text-black px-10 py-4 rounded-2xl font-bold transition">
           Explore Books
         </button>
-
       </section>
-
     </main>
   );
 }

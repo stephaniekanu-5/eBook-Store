@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 import { getBooks } from "../services/bookService";
 
@@ -37,37 +31,34 @@ export function BookProvider({ children }) {
 
   const featuredBooks = useMemo(
     () => books.filter((book) => book.featured),
-    [books]
+    [books],
   );
 
   const featuredTitleBooks = useMemo(
     () => books.filter((book) => book.featuredTitle),
-    [books]
+    [books],
   );
 
   const justArrivedBooks = useMemo(
     () => books.filter((book) => book.justArrived),
-    [books]
+    [books],
   );
 
   const bestSellerBooks = useMemo(
     () => books.filter((book) => book.bestSeller),
-    [books]
+    [books],
   );
 
   const recommendedBooks = useMemo(
     () => books.filter((book) => book.recommended),
-    [books]
+    [books],
   );
 
-  const dealsBooks = useMemo(
-    () => books.filter((book) => book.deals),
-    [books]
-  );
+  const dealsBooks = useMemo(() => books.filter((book) => book.deals), [books]);
 
   const comingSoonBooks = useMemo(
     () => books.filter((book) => book.comingSoon),
-    [books]
+    [books],
   );
 
   return (

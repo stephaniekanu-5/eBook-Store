@@ -1,22 +1,20 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useBooks, } from "../context/BookContext";
+import { useBooks } from "../context/BookContext";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-import { getBookId, isSameBook,} from "../utils/bookIds";
+import { getBookId, isSameBook } from "../utils/bookIds";
 
 export default function BookDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useContext(CartContext);
   const { books } = useBooks();
-  const book = books.find((b) =>
-    isSameBook(b, id)
-  );
+  const book = books.find((b) => isSameBook(b, id));
   const formatPrice = (price) =>
-  Number(price).toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+    Number(price).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
   const bookId = getBookId(book);
 
   if (!book) {
@@ -29,10 +27,19 @@ export default function BookDetails() {
         <img
           src={book.cover}
           alt={book.title}
-          className="w-full max-w-xs md:max-w-sm lg:max-w-lg h-auto object-cover rounded mx-auto"/>
-        <h2 className="text-2xl font-bold mt-4 text-gray-800 md:text-3xl md:text-center">{book.title}</h2>
-        <p className="text-gray-500 text-lg md:text-3xl md:text-center"> By: {book.author}</p>
-        <p className="font-bold mt-3 text-lg text-yellow-600 md:text-3xl md:text-center"> Price: {formatPrice(book.price)}</p>
+          className="w-full max-w-xs md:max-w-sm lg:max-w-lg h-auto object-cover rounded mx-auto"
+        />
+        <h2 className="text-2xl font-bold mt-4 text-gray-800 md:text-3xl md:text-center">
+          {book.title}
+        </h2>
+        <p className="text-gray-500 text-lg md:text-3xl md:text-center">
+          {" "}
+          By: {book.author}
+        </p>
+        <p className="font-bold mt-3 text-lg text-yellow-600 md:text-3xl md:text-center">
+          {" "}
+          Price: {formatPrice(book.price)}
+        </p>
         <button
           onClick={() => {
             navigate(`/preview/${bookId}`);
@@ -57,9 +64,7 @@ export default function BookDetails() {
               : "bg-gray-300 text-gray-600 cursor-not-allowed"
           }`}
         >
-          {book._id
-            ? "Download Now"
-            : "Unavailable for checkout"}
+          {book._id ? "Download Now" : "Unavailable for checkout"}
         </button>
       </div>
     </main>

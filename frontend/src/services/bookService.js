@@ -30,61 +30,44 @@ const createFormData = (data) => {
 // =========================
 // GET ALL BOOKS
 // =========================
-export const getBooks =
-  async () => {
-    try {
-      const response = await API.get("/api/books");
-      return response.data;
-    }
-     catch (error) {
-      console.error(
-        "Error fetching books:",
-        error
-      );
-      throw error;
-    }
-  };
+export const getBooks = async () => {
+  try {
+    const response = await API.get("/api/books");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching books:", error);
+    throw error;
+  }
+};
 
 // =========================
 // GET SINGLE BOOK
 // =========================
-export const getBook =
-  async (id) => {
-    try {
-      const response = await API.get(`/api/books/${id}`);
-      return response.data;
-    } 
-    catch (error) {
-      console.error(
-        "Error fetching book:",
-        error
-      );
+export const getBook = async (id) => {
+  try {
+    const response = await API.get(`/api/books/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching book:", error);
 
-      throw error;
-    }
-  };
+    throw error;
+  }
+};
 
 // =========================
 // CREATE BOOK
 // =========================
 export const createBook = async (formData) => {
   try {
-    const response = await API.post("/api/books",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    const response = await API.post("/api/books", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
     return response.data;
-  }
-   catch (error) {
-    console.error(
-      "Error creating book:",
-      error
-    );
+  } catch (error) {
+    console.error("Error creating book:", error);
 
     throw error;
   }
@@ -98,15 +81,11 @@ export const updateBook = async (id, formData) => {
   try {
     console.log("Sending PUT to:", `/api/books/${id}`);
 
-    const response = await API.put(
-      `/api/books/${id}`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    const response = await API.put(`/api/books/${id}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     console.log("SERVICE RESPONSE:", response);
     return response.data;
   } catch (error) {
@@ -119,11 +98,11 @@ export const updateBook = async (id, formData) => {
 // DELETE BOOK
 // =========================
 export const deleteBook = async (id) => {
-    try {
-      const response = await API.delete(`/api/books/${id}`);
-      return response.data;
-    } catch (error) {
-      console.error("Error deleting book:", error);
-      throw error;
-    }
-  };
+  try {
+    const response = await API.delete(`/api/books/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting book:", error);
+    throw error;
+  }
+};

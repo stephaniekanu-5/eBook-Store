@@ -17,19 +17,22 @@ export default function Feedback() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white/5 p-6 rounded-3xl border border-white/10">
               <p className="text-gray-300 italic">
-                "This platform has completely transformed how I consume literature. The selection is outstanding!"
+                "This platform has completely transformed how I consume
+                literature. The selection is outstanding!"
               </p>
               <p className="text-yellow-400 font-bold mt-4">- Jane Doe</p>
             </div>
             <div className="bg-white/5 p-6 rounded-3xl border border-white/10">
               <p className="text-gray-300 italic">
-                "I love the convenience of accessing books anytime, anywhere. It's a game-changer!"
+                "I love the convenience of accessing books anytime, anywhere.
+                It's a game-changer!"
               </p>
               <p className="text-yellow-400 font-bold mt-4">- John Smith</p>
             </div>
             <div className="bg-white/5 p-6 rounded-3xl border border-white/10">
               <p className="text-gray-300 italic">
-                "The user interface is intuitive and the search functionality is top-notch."
+                "The user interface is intuitive and the search functionality is
+                top-notch."
               </p>
               <p className="text-yellow-400 font-bold mt-4">- Alice Johnson</p>
             </div>
@@ -47,7 +50,9 @@ export default function Feedback() {
             Share Your Feedback
           </h2>
           <p className="text-gray-400 text-lg mb-6">
-             We value your feedback and suggestions. Please share your thoughts with us to help us improve our services and provide you with a better experience.
+            We value your feedback and suggestions. Please share your thoughts
+            with us to help us improve our services and provide you with a
+            better experience.
           </p>
           <form className="bg-white/5 p-6 rounded-3xl border border-white/10">
             <div className="mb-4">
@@ -99,7 +104,8 @@ export default function Feedback() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative overflow-hidden rounded-[40px] border border-yellow-400/20 bg-gradient-to-r from-yellow-400/10 via-white/5 to-yellow-400/10 p-10 md:p-16 text-center">
+          className="relative overflow-hidden rounded-[40px] border border-yellow-400/20 bg-gradient-to-r from-yellow-400/10 via-white/5 to-yellow-400/10 p-10 md:p-16 text-center"
+        >
           {/* Glow */}
           <div className="absolute -top-24 -left-24 w-64 h-64 bg-yellow-400/20 blur-3xl rounded-full" />
           <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-yellow-400/20 blur-3xl rounded-full" />
@@ -109,23 +115,23 @@ export default function Feedback() {
             </span>
             <h2 className="text-4xl md:text-6xl font-black leading-tight">
               Ready to Start
-              <span className="text-yellow-400">
-                {" "}Reading Smarter?
-              </span>
+              <span className="text-yellow-400"> Reading Smarter?</span>
             </h2>
             <p className="mt-6 max-w-2xl mx-auto text-gray-300 text-lg leading-8">
-              Explore hundreds of carefully selected ebooks
-              for business, technology, finance, personal
-              development, health, education and much more.
+              Explore hundreds of carefully selected ebooks for business,
+              technology, finance, personal development, health, education and
+              much more.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-5">
-              <Link to="/books"
+              <Link
+                to="/books"
                 className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-8 py-4 rounded-2xl transition hover:scale-105"
               >
                 Browse Books
               </Link>
 
-              <Link to="/register"
+              <Link
+                to="/register"
                 className="border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black font-bold px-8 py-4 rounded-2xl transition hover:scale-105"
               >
                 Create Free Account
@@ -137,33 +143,25 @@ export default function Feedback() {
                 <h3 className="text-xl md:text-4xl font-black text-yellow-400">
                   500+
                 </h3>
-                <p className="text-gray-400 mt-2">
-                  Premium Books
-                </p>
+                <p className="text-gray-400 mt-2">Premium Books</p>
               </div>
               <div>
                 <h3 className="text-xl md:text-4xl font-black text-yellow-400">
                   24/7
                 </h3>
-                <p className="text-gray-400 mt-2">
-                  Instant Access
-                </p>
+                <p className="text-gray-400 mt-2">Instant Access</p>
               </div>
               <div>
                 <h3 className="text-xl md:text-4xl font-black text-yellow-400">
                   100%
                 </h3>
-                <p className="text-gray-400 mt-2">
-                  Secure Payments
-                </p>
+                <p className="text-gray-400 mt-2">Secure Payments</p>
               </div>
               <div>
                 <h3 className="text-xl md:text-4xl font-black text-yellow-400">
                   Worldwide
                 </h3>
-                <p className="text-gray-400 mt-2">
-                  Digital Delivery
-                </p>
+                <p className="text-gray-400 mt-2">Digital Delivery</p>
               </div>
             </div>
           </div>

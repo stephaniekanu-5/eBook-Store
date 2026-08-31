@@ -84,9 +84,7 @@ export default function HelpCenter() {
             >
               <div className="text-4xl mb-4">{item.icon}</div>
 
-              <h3 className="text-xl font-bold mb-2">
-                {item.title}
-              </h3>
+              <h3 className="text-xl font-bold mb-2">{item.title}</h3>
 
               <p className="text-gray-400 text-sm leading-relaxed">
                 {item.desc}
@@ -112,9 +110,7 @@ export default function HelpCenter() {
         {/* FAQ */}
         <section className="bg-gray-900 border border-white/10 rounded-3xl p-6 md:p-10 shadow-xl">
           <div className="mb-8">
-            <h2 className="text-3xl font-black mb-2">
-              Related Questions
-            </h2>
+            <h2 className="text-3xl font-black mb-2">Related Questions</h2>
 
             <p className="text-gray-400">
               Quick answers to the most common customer questions.
@@ -149,38 +145,31 @@ export default function HelpCenter() {
           </div>
         </section>
         <section>
-          <h3 className="font-bold mb-4">
-          Popular Topics
-          </h3>
+          <h3 className="font-bold mb-4">Popular Topics</h3>
           <div className="flex flex-wrap gap-3">
             {[
-            "Payment Issues",
-            "Download Books",
-            "My Library",
-            "Refund",
-            "Reset Password",
-            "Reading Offline",
-            "Invoices",
-            "Account Verification",
-            ].map((topic)=>(
-            <button
-              key={topic}
-              className="px-5 py-2 rounded-full bg-gray-900 border border-white/10 hover:border-yellow-400 hover:bg-yellow-400 hover:text-black transition"
+              "Payment Issues",
+              "Download Books",
+              "My Library",
+              "Refund",
+              "Reset Password",
+              "Reading Offline",
+              "Invoices",
+              "Account Verification",
+            ].map((topic) => (
+              <button
+                key={topic}
+                className="px-5 py-2 rounded-full bg-gray-900 border border-white/10 hover:border-yellow-400 hover:bg-yellow-400 hover:text-black transition"
               >
-              {topic}
-            </button>
+                {topic}
+              </button>
             ))}
           </div>
         </section>
         <section>
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-3xl font-black">
-              Popular Articles
-            </h2>
-            <Link
-              to="/contact"
-              className="text-yellow-400 hover:underline"
-            >
+            <h2 className="text-3xl font-black">Popular Articles</h2>
+            <Link to="/contact" className="text-yellow-400 hover:underline">
               View All
             </Link>
           </div>
@@ -207,12 +196,8 @@ export default function HelpCenter() {
                 key={article.title}
                 className="bg-gray-900 border border-white/10 rounded-3xl p-6 hover:border-yellow-400 transition"
               >
-                <h3 className="text-xl font-bold">
-                  {article.title}
-                </h3>
-                <p className="text-gray-500 mt-3">
-                  {article.read}
-                </p>
+                <h3 className="text-xl font-bold">{article.title}</h3>
+                <p className="text-gray-500 mt-3">{article.read}</p>
               </div>
             ))}
           </div>
@@ -222,100 +207,76 @@ export default function HelpCenter() {
           <div className="bg-gradient-to-br from-yellow-400 to-yellow-300 text-black rounded-3xl p-8 shadow-2xl">
             <div className="text-5xl mb-5">🎧</div>
 
-            <h2 className="text-3xl font-black mb-3">
-              Need More Help?
-            </h2>
+            <h2 className="text-3xl font-black mb-3">Need More Help?</h2>
 
             <p className="mb-6 text-black/80 leading-relaxed">
               Our support team is available to help with payments, downloads,
-              ebook access, technical issues, and account recovery your library, or any
-              questions about UketBooks.
+              ebook access, technical issues, and account recovery your library,
+              or any questions about UketBooks.
             </p>
 
-            <button onClick={() => window.location.href = "mailto:uketbooks@gmail.com"}
-              className="bg-black text-white px-6 py-4 rounded-2xl font-bold hover:scale-105 transition-all duration-300">
+            <button
+              onClick={() =>
+                (window.location.href = "mailto:uketbooks@gmail.com")
+              }
+              className="bg-black text-white px-6 py-4 rounded-2xl font-bold hover:scale-105 transition-all duration-300"
+            >
               Email Support
             </button>
           </div>
 
           <div className="bg-gray-900 border border-white/10 rounded-3xl p-8 space-y-5">
             <div>
-              <h3 className="text-xl font-bold mb-1">
-               📧 Support Email
-              </h3>
+              <h3 className="text-xl font-bold mb-1">📧 Support Email</h3>
 
-              <p className="text-gray-400">
-                uketbooks@gmail.com
-              </p>
+              <p className="text-gray-400">uketbooks@gmail.com</p>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold mb-1">
-                🕒 Response Time
-              </h3>
+              <h3 className="text-xl font-bold mb-1">🕒 Response Time</h3>
 
-              <p className="text-gray-400">
-                within 24 hours.
-              </p>
+              <p className="text-gray-400">within 24 hours.</p>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold mb-1">
-               🌍 Support Hours
-              </h3>
+              <h3 className="text-xl font-bold mb-1">🌍 Support Hours</h3>
 
-              <p className="text-gray-400">
-                Monday - Saturday · 8AM - 6PM
-              </p>
+              <p className="text-gray-400">Monday - Saturday · 8AM - 6PM</p>
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-1">
-                💬 Live Chat
-              </h3>
+              <h3 className="text-xl font-bold mb-1">💬 Live Chat</h3>
               <p className="text-gray-400">
-                For faster resolution, include your payment reference and registered email when contacting support.
+                For faster resolution, include your payment reference and
+                registered email when contacting support.
               </p>
             </div>
             <div className="bg-gray-900 border border-white/10 rounded-2xl p-4 text-sm text-gray-400 leading-relaxed">
               Coming Soon: Live chat support for instant assistance.
             </div>
-            <Link to="/contact" className="text-yellow-400 font-bold hover:underline border border-yellow-400/30 px-4 py-2 rounded-xl transition-all duration-300 inline-block">
+            <Link
+              to="/contact"
+              className="text-yellow-400 font-bold hover:underline border border-yellow-400/30 px-4 py-2 rounded-xl transition-all duration-300 inline-block"
+            >
               contact support
             </Link>
           </div>
         </section>
-                <section className="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <section className="grid grid-cols-2 md:grid-cols-4 gap-5">
           <div className="bg-gray-900 rounded-3xl p-6 border border-white/10">
-            <h2 className="text-3xl font-black text-yellow-400">
-              500+
-            </h2>
-            <p className="text-gray-400 mt-2">
-              eBooks
-            </p>
+            <h2 className="text-3xl font-black text-yellow-400">500+</h2>
+            <p className="text-gray-400 mt-2">eBooks</p>
           </div>
           <div className="bg-gray-900 rounded-3xl p-6 border border-white/10">
-            <h2 className="text-3xl font-black text-yellow-400">
-              1000+
-            </h2>
-            <p className="text-gray-400 mt-2">
-              Readers
-            </p>
+            <h2 className="text-3xl font-black text-yellow-400">1000+</h2>
+            <p className="text-gray-400 mt-2">Readers</p>
           </div>
           <div className="bg-gray-900 rounded-3xl p-6 border border-white/10">
-            <h2 className="text-3xl font-black text-yellow-400">
-              24h
-            </h2>
-            <p className="text-gray-400 mt-2">
-              Support Response
-            </p>
+            <h2 className="text-3xl font-black text-yellow-400">24h</h2>
+            <p className="text-gray-400 mt-2">Support Response</p>
           </div>
           <div className="bg-gray-900 rounded-3xl p-6 border border-white/10">
-            <h2 className="text-3xl font-black text-yellow-400">
-              99%
-            </h2>
-            <p className="text-gray-400 mt-2">
-              Satisfaction
-            </p>
+            <h2 className="text-3xl font-black text-yellow-400">99%</h2>
+            <p className="text-gray-400 mt-2">Satisfaction</p>
           </div>
         </section>
       </div>

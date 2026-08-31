@@ -22,7 +22,7 @@ export const registerUser = async (userData) => {
   } catch (error) {
     console.error(
       "Registration Error:",
-      error?.response?.data || error.message
+      error?.response?.data || error.message,
     );
 
     throw error;
@@ -40,10 +40,7 @@ export const loginUser = async (userData) => {
 
     return response.data;
   } catch (error) {
-    console.error(
-      "Login Error:",
-      error?.response?.data || error.message
-    );
+    console.error("Login Error:", error?.response?.data || error.message);
 
     throw error;
   }
@@ -57,10 +54,7 @@ export const getProfile = async () => {
     const response = await API.get("/api/auth/profile");
     return response.data;
   } catch (error) {
-    console.error(
-      "Profile Error:",
-      error?.response?.data || error.message
-    );
+    console.error("Profile Error:", error?.response?.data || error.message);
 
     throw error;
   }
@@ -77,10 +71,7 @@ export const logoutUser = async () => {
 
     return response.data;
   } catch (error) {
-    console.error(
-      "Logout Error:",
-      error?.response?.data || error.message
-    );
+    console.error("Logout Error:", error?.response?.data || error.message);
 
     localStorage.removeItem("token");
 
@@ -93,16 +84,13 @@ export const logoutUser = async () => {
 // =========================
 export const sendReceiptEmail = async (emailData) => {
   try {
-    const response = await API.post(
-      "/api/auth/send-receipt",
-      emailData
-    );
+    const response = await API.post("/api/auth/send-receipt", emailData);
 
     return response.data;
   } catch (error) {
     console.error(
       "Receipt Email Error:",
-      error?.response?.data || error.message
+      error?.response?.data || error.message,
     );
 
     throw error;

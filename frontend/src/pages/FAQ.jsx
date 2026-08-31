@@ -23,13 +23,12 @@ const faqs = [
   },
   {
     q: "How do I contact support?",
-    a: "You can contact our support team through the 'Help' section in your account or via email at support@uketbooks.net."
+    a: "You can contact our support team through the 'Help' section in your account or via email at support@uketbooks.net.",
   },
   {
     q: "Are there any discounts or promotions?",
-    a: "We offer seasonal promotions and discounts. Sign up for our newsletter to stay updated on the latest offers."
+    a: "We offer seasonal promotions and discounts. Sign up for our newsletter to stay updated on the latest offers.",
   },
-  
 ];
 
 export default function FAQ() {
@@ -62,34 +61,30 @@ export default function FAQ() {
             space-y-5
           "
         >
-          {faqs.map(
-            (faq, index) => (
-              <div
-                key={index}
-                className="
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="
                   p-6
                   rounded-3xl
                   border
                   border-white/10
                   bg-white/5
                 "
-              >
-                <h2
-                  className="
+            >
+              <h2
+                className="
                     text-xl
                     font-bold
                     mb-2
                   "
-                >
-                  {faq.q}
-                </h2>
+              >
+                {faq.q}
+              </h2>
 
-                <p className="text-gray-400">
-                  {faq.a}
-                </p>
-              </div>
-            )
-          )}
+              <p className="text-gray-400">{faq.a}</p>
+            </div>
+          ))}
         </div>
       </div>
       <div className="max-w-4xl mx-auto mt-16 text-center">

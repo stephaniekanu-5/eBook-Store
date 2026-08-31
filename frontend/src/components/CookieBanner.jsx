@@ -19,7 +19,7 @@ export default function CookieBanner() {
         accepted: true,
         analytics: true,
         marketing: true,
-      })
+      }),
     );
 
     setVisible(false);
@@ -32,7 +32,7 @@ export default function CookieBanner() {
         accepted: true,
         analytics: false,
         marketing: false,
-      })
+      }),
     );
 
     setVisible(false);
@@ -52,14 +52,16 @@ export default function CookieBanner() {
               </h2>
             </div> */}
             <p className="text-gray-300 leading-7">
-              UketBooks uses cookies to keep you signed in, remember your preferences, improve performance,
-              and understand how our platform is used. You can read more in our{" "}
+              UketBooks uses cookies to keep you signed in, remember your
+              preferences, improve performance, and understand how our platform
+              is used. You can read more in our{" "}
               <Link
                 to="/cookies"
                 className="text-yellow-400 hover:underline font-semibold"
               >
                 Cookies Policy
-              </Link>.
+              </Link>
+              .
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">

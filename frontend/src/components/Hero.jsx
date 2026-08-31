@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState, useContext, useEffect, useMemo } from "react";
-import { useBooks }from "../context/BookContext";
+import { useBooks } from "../context/BookContext";
 import SearchBar from "./SearchBar";
 import CategoryFilter from "./CategoryFilter";
 
@@ -13,38 +13,38 @@ export default function Hero() {
   const [category, setCategory] = useState("All");
   const [focus, setFocus] = useState(false);
   const { books } = useBooks();
-   
+
   // =========================
   // TYPING EFFECT
   // =========================
-  useEffect(() => { let i = 0;
+  useEffect(() => {
+    let i = 0;
 
-    const interval = setInterval(() => { setDisplayText( text.slice(0, i));
+    const interval = setInterval(() => {
+      setDisplayText(text.slice(0, i));
       i++;
       if (i > text.length) {
         clearInterval(interval);
       }
     }, 60);
-    return () =>
-      clearInterval(interval);
+    return () => clearInterval(interval);
   }, []);
 
   // 🔥 Smart search + filter system
-    const filteredBooks = useMemo(() => {
-      const q = search.toLowerCase();
-      return books.filter((book) => {
-        const matchesSearch =
-          book.title.toLowerCase().includes(q) ||
-          book.author.toLowerCase().includes(q) ||
-          book.category.toLowerCase().includes(q);
-  
-        const matchesCategory =
-          category === "All" || book.category === category;
-  
-        return matchesSearch && matchesCategory;
-      });
-    }, [search, category]);
-  
+  const filteredBooks = useMemo(() => {
+    const q = search.toLowerCase();
+    return books.filter((book) => {
+      const matchesSearch =
+        book.title.toLowerCase().includes(q) ||
+        book.author.toLowerCase().includes(q) ||
+        book.category.toLowerCase().includes(q);
+
+      const matchesCategory = category === "All" || book.category === category;
+
+      return matchesSearch && matchesCategory;
+    });
+  }, [search, category]);
+
   // =========================
   // ENTER KEY
   // =========================
@@ -55,9 +55,7 @@ export default function Hero() {
   };
 
   return (
-    <section
-      className="relative w-full mb-5 flex items-center justify-center overflow-hidden"
-    >
+    <section className="relative w-full mb-5 flex items-center justify-center overflow-hidden">
       {/* BACKGROUND */}
       <div
         className=" absolute inset-0 bg-cover bg-center scale-110"
@@ -71,8 +69,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/7" />
 
       {/* GLOW */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-black/40 to-black"
-      />
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-black/40 to-black" />
 
       {/* FLOATING SHAPES */}
       <motion.div
@@ -122,34 +119,30 @@ export default function Hero() {
           UketBooks
         </motion.h1>
 
-        <p className="text-yellow-300 mb-8 text-lg md:text-2xl font-medium"
-        >
+        <p className="text-yellow-300 mb-8 text-lg md:text-2xl font-medium">
           Your favorite digital bookstore.
         </p>
 
         {/* TYPING HEADLINE */}
-        <h2 className="text-3xl md:text-6xl font-black text-white leading-tight mb-8 min-h-[100px]"
-        >
+        <h2 className="text-3xl md:text-6xl font-black text-white leading-tight mb-8 min-h-[100px]">
           {displayText}
 
-          <span className="animate-pulse text-yellow-400"
-          >
-            |
-          </span>
+          <span className="animate-pulse text-yellow-400">|</span>
         </h2>
         {/* SEARCH */}
-          <SearchBar search={search} setSearch={setSearch} books={books} />
-        
+        <SearchBar search={search} setSearch={setSearch} books={books} />
+
         {/* CTA BUTTONS */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <Link to="/books"
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            to="/books"
             className="bg-purple-700/50 hover:bg-yellow-400 hover:text-black text-white px-8 py-4 rounded-2xl font-bold transition-all duration-300 hover:scale-105 shadow-xl"
           >
             Explore Books
           </Link>
 
-          <Link to="/myLibrary"
+          <Link
+            to="/myLibrary"
             className=" border border-white/20 bg-purple-700/50 hover:bg-yellow-400 hover:border-yellow-400 hover:text-black text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 backdrop-blur-lg"
           >
             Download Books
@@ -157,8 +150,7 @@ export default function Hero() {
         </div>
 
         {/* TRUST TEXT */}
-        <p className=" mt-10 text-sm text-gray-400"
-        >
+        <p className=" mt-10 text-sm text-gray-400">
           Trusted by readers worldwide • Secure payments • Instant downloads
         </p>
       </motion.div>

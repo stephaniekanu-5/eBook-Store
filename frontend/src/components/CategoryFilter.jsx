@@ -13,10 +13,7 @@ import {
 
 import { useBooks } from "../context/BookContext";
 
-export default function CategoryFilter({
-  category,
-  setCategory,
-}) {
+export default function CategoryFilter({ category, setCategory }) {
   const { books } = useBooks();
 
   const iconMap = {
@@ -38,31 +35,24 @@ export default function CategoryFilter({
       name: "All",
       icon: <FaBook />,
     },
-    ...[
-      ...new Set(
-        books
-          .map((book) => book.category)
-          .filter(Boolean)
-      ),
-    ].map((name) => ({
-      name,
-      icon: iconMap[name] || <FaIcons />,
-    })),
+    ...[...new Set(books.map((book) => book.category).filter(Boolean))].map(
+      (name) => ({
+        name,
+        icon: iconMap[name] || <FaIcons />,
+      }),
+    ),
   ];
 
   return (
     <section className="mb-5">
       <div className="bg-gray-900 rounded-3xl p-2 md:p-4">
-
         {/* Header */}
         <div className="mb-4">
           <h1 className="text-4xl md:text-5xl font-black text-yellow-400">
             Discover Amazing Books
           </h1>
 
-          <p className="text-gray-400 mt-2">
-            Browse books by category.
-          </p>
+          <p className="text-gray-400 mt-2">Browse books by category.</p>
         </div>
 
         {/* Mobile Categories */}
@@ -104,29 +94,20 @@ export default function CategoryFilter({
               <div
                 className={`text-2xl
 
-                  ${
-                    category === cat.name
-                      ? "text-black"
-                      : "text-yellow-400"
-                  }
+                  ${category === cat.name ? "text-black" : "text-yellow-400"}
                 `}
               >
                 {cat.icon}
               </div>
 
               <div>
-                <h3 className="font-semibold">
-                  {cat.name}
-                </h3>
+                <h3 className="font-semibold">{cat.name}</h3>
 
-                <p className="text-xs opacity-70 mt-1">
-                  Explore books
-                </p>
+                <p className="text-xs opacity-70 mt-1">Explore books</p>
               </div>
             </button>
           ))}
         </div>
-
       </div>
     </section>
   );

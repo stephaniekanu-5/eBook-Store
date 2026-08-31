@@ -1,9 +1,7 @@
 import { FiSearch } from "react-icons/fi";
 import { useState, useMemo, useEffect } from "react";
 import Fuse from "fuse.js";
-import {
-  getBookId,
-} from "../utils/bookIds";
+import { getBookId } from "../utils/bookIds";
 
 export default function SearchBar({ search, setSearch, books = [] }) {
   const [focus, setFocus] = useState(false);
@@ -18,7 +16,10 @@ export default function SearchBar({ search, setSearch, books = [] }) {
   }, [books]);
 
   const results = search
-    ? fuse.search(search).slice(0, 6).map((r) => r.item)
+    ? fuse
+        .search(search)
+        .slice(0, 6)
+        .map((r) => r.item)
     : [];
 
   // 🔥 Keyboard navigation
@@ -26,15 +27,11 @@ export default function SearchBar({ search, setSearch, books = [] }) {
     if (!results.length) return;
 
     if (e.key === "ArrowDown") {
-      setActiveIndex((prev) =>
-        prev < results.length - 1 ? prev + 1 : 0
-      );
+      setActiveIndex((prev) => (prev < results.length - 1 ? prev + 1 : 0));
     }
 
     if (e.key === "ArrowUp") {
-      setActiveIndex((prev) =>
-        prev > 0 ? prev - 1 : results.length - 1
-      );
+      setActiveIndex((prev) => (prev > 0 ? prev - 1 : results.length - 1));
     }
 
     if (e.key === "Enter") {
@@ -48,7 +45,6 @@ export default function SearchBar({ search, setSearch, books = [] }) {
 
   return (
     <div className="relative px-4 md:px-12 py-3">
-
       {/* Input */}
       <div className="max-w-3xl mx-auto relative">
         <FiSearch className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xl" />
@@ -68,7 +64,6 @@ export default function SearchBar({ search, setSearch, books = [] }) {
       {/* Dropdown */}
       {focus && results.length > 0 && (
         <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-xl mt-2 border overflow-hidden">
-
           {results.map((book, index) => (
             <div
               key={getBookId(book)}
@@ -77,7 +72,6 @@ export default function SearchBar({ search, setSearch, books = [] }) {
               className={`flex items-center gap-3 p-3 cursor-pointer transition
                 ${activeIndex === index ? "bg-gray-100" : ""}`}
             >
-
               <img
                 src={book.cover}
                 className="w-10 h-12 object-cover rounded"
@@ -87,17 +81,12 @@ export default function SearchBar({ search, setSearch, books = [] }) {
                 <p className="font-semibold text-sm">
                   {highlight(book.title, search)}
                 </p>
-                <p className="text-xs text-gray-500">
-                  {book.author}
-                </p>
+                <p className="text-xs text-gray-500">{book.author}</p>
               </div>
-
             </div>
           ))}
-
         </div>
       )}
-
     </div>
   );
 }
@@ -115,6 +104,6 @@ function highlight(text, query) {
       </span>
     ) : (
       part
-    )
+    ),
   );
 }

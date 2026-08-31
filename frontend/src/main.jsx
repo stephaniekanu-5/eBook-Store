@@ -8,8 +8,8 @@ import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import { StoreProvider } from "./context/StoreContext";
 import { ThemeProvider } from "./context/ThemeContext";
-import { BookProvider, } from "./context/BookContext";
-import { PurchaseProvider, } from "./context/PurchaseContext";
+import { BookProvider } from "./context/BookContext";
+import { PurchaseProvider } from "./context/PurchaseContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -28,5 +28,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </CartProvider>
       </AuthProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

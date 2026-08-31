@@ -51,15 +51,12 @@ export default function Terms() {
 
   return (
     <main className="min-h-screen bg-black text-white">
-
       {/* Hero */}
       <section className="relative overflow-hidden py-20 px-6 border-b border-white/10">
-
         <div className="absolute -top-40 left-0 w-96 h-96 bg-yellow-400/10 blur-3xl rounded-full" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-yellow-400/10 blur-3xl rounded-full" />
 
         <div className="relative max-w-5xl mx-auto text-center">
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -82,23 +79,18 @@ export default function Terms() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl mx-auto mt-8 text-lg text-gray-300 leading-8"
           >
-            These Terms of Service explain the rules, responsibilities,
-            and conditions that govern your use of the UketBooks platform.
-            Please read them carefully before purchasing or accessing any
-            digital content.
+            These Terms of Service explain the rules, responsibilities, and
+            conditions that govern your use of the UketBooks platform. Please
+            read them carefully before purchasing or accessing any digital
+            content.
           </motion.p>
-
         </div>
-
       </section>
 
       {/* Terms */}
       <section className="py-20 px-6">
-
         <div className="max-w-5xl mx-auto space-y-8">
-
           {sections.map((section, index) => (
-
             <motion.div
               key={section.title}
               initial={{ opacity: 0, y: 30 }}
@@ -110,35 +102,26 @@ export default function Terms() {
               viewport={{ once: true }}
               className="bg-gray-900 border border-white/10 rounded-3xl p-8 hover:border-yellow-400/40 transition"
             >
-
               <h2 className="text-2xl font-bold text-yellow-400 mb-4">
                 {section.title}
               </h2>
 
-              <p className="text-gray-300 leading-8">
-                {section.content}
-              </p>
-
+              <p className="text-gray-300 leading-8">{section.content}</p>
             </motion.div>
-
           ))}
-
         </div>
-
       </section>
 
       {/* Footer Notice */}
       <section className="px-6 pb-20">
-
         <div className="max-w-5xl mx-auto bg-gradient-to-r from-yellow-400 to-yellow-300 text-black rounded-3xl p-10 text-center">
-
           <h2 className="text-3xl font-black mb-4">
             Questions About These Terms?
           </h2>
 
           <p className="max-w-2xl mx-auto mb-8 text-black/80 leading-7">
-            If you need clarification about any part of our Terms of
-            Service, our support team is happy to assist you.
+            If you need clarification about any part of our Terms of Service,
+            our support team is happy to assist you.
           </p>
 
           <a
@@ -147,11 +130,8 @@ export default function Terms() {
           >
             Contact Support
           </a>
-
         </div>
-
       </section>
-
     </main>
   );
 }

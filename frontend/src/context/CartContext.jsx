@@ -1,73 +1,40 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-import {
-  getBookId,
-  isSameBook,
-} from "../utils/bookIds";
+import { getBookId, isSameBook } from "../utils/bookIds";
 
-export const CartContext =
-  createContext();
+export const CartContext = createContext();
 
-export function CartProvider({
-  children,
-}) {
-
+export function CartProvider({ children }) {
   /* LOAD SAVED CART */
-  const [cart, setCart] =
-    useState(() => {
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("uketbooks-cart");
 
-      const savedCart =
-        localStorage.getItem(
-          "uketbooks-cart"
-        );
-
-      return savedCart
-        ? JSON.parse(savedCart)
-        : [];
-    });
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
 
   /* SAVE CART */
   useEffect(() => {
-
-    localStorage.setItem(
-      "uketbooks-cart",
-      JSON.stringify(cart)
-    );
-
+    localStorage.setItem("uketbooks-cart", JSON.stringify(cart));
   }, [cart]);
 
   /* ADD TO CART */
   const addToCart = (book) => {
-    const bookId =
-      getBookId(book);
+    const bookId = getBookId(book);
 
-    const existingBook =
-      cart.find(
-        (item) =>
-          isSameBook(item, bookId)
-      );
+    const existingBook = cart.find((item) => isSameBook(item, bookId));
 
     if (existingBook) {
-
       setCart((prev) =>
         prev.map((item) =>
           isSameBook(item, bookId)
             ? {
                 ...item,
-                quantity:
-                  item.quantity + 1,
+                quantity: item.quantity + 1,
               }
-            : item
-        )
+            : item,
+        ),
       );
-
     } else {
-
       setCart((prev) => [
         ...prev,
         {
@@ -80,56 +47,37 @@ export function CartProvider({
   };
 
   /* REMOVE ITEM */
-  const removeFromCart = (
-    id
-  ) => {
-
-    setCart((prev) =>
-      prev.filter(
-        (item) =>
-          !isSameBook(item, id)
-      )
-    );
+  const removeFromCart = (id) => {
+    setCart((prev) => prev.filter((item) => !isSameBook(item, id)));
   };
 
   /* INCREASE QUANTITY */
-  const increaseQuantity = (
-    id
-  ) => {
-
+  const increaseQuantity = (id) => {
     setCart((prev) =>
       prev.map((item) =>
         isSameBook(item, id)
           ? {
               ...item,
-              quantity:
-                item.quantity + 1,
+              quantity: item.quantity + 1,
             }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
   /* DECREASE QUANTITY */
-  const decreaseQuantity = (
-    id
-  ) => {
-
+  const decreaseQuantity = (id) => {
     setCart((prev) =>
       prev
         .map((item) =>
           isSameBook(item, id)
             ? {
                 ...item,
-                quantity:
-                  item.quantity - 1,
+                quantity: item.quantity - 1,
               }
-            : item
+            : item,
         )
-        .filter(
-          (item) =>
-            item.quantity > 0
-        )
+        .filter((item) => item.quantity > 0),
     );
   };
 
@@ -139,21 +87,12 @@ export function CartProvider({
   };
 
   /* TOTALS */
-  const totalItems =
-    cart.reduce(
-      (sum, item) =>
-        sum + item.quantity,
-      0
-    );
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  const totalPrice =
-    cart.reduce(
-      (sum, item) =>
-        sum +
-        Number(item.price) *
-          item.quantity,
-      0
-    );
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + Number(item.price) * item.quantity,
+    0,
+  );
 
   return (
     <CartContext.Provider
@@ -180,5 +119,4 @@ export function CartProvider({
   );
 }
 
-export const useCart = () =>
-  useContext(CartContext);
+export const useCart = () => useContext(CartContext);

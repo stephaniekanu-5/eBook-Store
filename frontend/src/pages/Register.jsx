@@ -1,76 +1,56 @@
-import {useState,} from "react";
-import {Link, useNavigate, useLocation,} from "react-router-dom";
-import {useAuth,} from "../context/AuthContext";
-import {FaEye, FaEyeSlash,} from "react-icons/fa";
+import { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Register() {
   const navigate = useNavigate();
   const { register } = useAuth();
-  const [form, setForm] = useState({ name: "", email: "", password: "", });
+  const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [showPassword, setShowPassword,] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const [success, setSuccess] = useState("");
   const handleChange = (e) => {
-    const {
-      name,
-      value,
-    } = e.target;
-    setForm((prev) => ({...prev, [name]: value,}));
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const validateForm = () => {
-    if (
-      !form.name ||
-      !form.email ||
-      !form.password
-    ) {
+    if (!form.name || !form.email || !form.password) {
       return "Please fill all fields.";
     }
 
-    if (
-      form.password.length < 6
-    ) {
+    if (form.password.length < 6) {
       return "Password must be at least 6 characters.";
     }
 
     return null;
   };
 
-  const handleSubmit =
-    async (e) => {
-      e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      setError("");
+    setError("");
 
-      const validationError =
-        validateForm();
+    const validationError = validateForm();
 
-      if (validationError) {
-        return setError(
-          validationError
-        );
+    if (validationError) {
+      return setError(validationError);
+    }
+
+    try {
+      setLoading(true);
+
+      const result = await register(form.name, form.email, form.password);
+
+      if (!result.success) {
+        setError(result.message);
+
+        return;
       }
-
-      try {
-        setLoading(true);
-
-        const result =
-          await register(
-            form.name,
-            form.email,
-            form.password
-          );
-
-        if (!result.success) {
-          setError(
-            result.message
-          );
-
-          return;
-        }
       setForm({
         name: "",
         email: "",
@@ -80,19 +60,18 @@ export default function Register() {
       setTimeout(() => {
         navigate(from, { replace: true });
       }, 1500);
-      } 
-      catch (err) {
-        console.error(err);
+    } catch (err) {
+      console.error(err);
 
-        setError(
-          err?.response?.data?.message ||
+      setError(
+        err?.response?.data?.message ||
           err.message ||
-          "Something went wrong. please try again."
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
+          "Something went wrong. please try again.",
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div
@@ -140,8 +119,7 @@ export default function Register() {
             mb-8
           "
         >
-          Start building your
-          digital library
+          Start building your digital library
         </p>
 
         {/* ERROR */}
@@ -171,9 +149,7 @@ export default function Register() {
         )}
         {/* FORM */}
         <form
-          onSubmit={
-            handleSubmit
-          }
+          onSubmit={handleSubmit}
           className="
             space-y-5
           "
@@ -184,9 +160,7 @@ export default function Register() {
             name="name"
             placeholder="Full Name"
             value={form.name}
-            onChange={
-              handleChange
-            }
+            onChange={handleChange}
             autoComplete="name"
             className="
               w-full
@@ -211,9 +185,7 @@ export default function Register() {
             name="email"
             placeholder="Email Address"
             value={form.email}
-            onChange={
-              handleChange
-            }
+            onChange={handleChange}
             autoComplete="email"
             className="
               w-full
@@ -239,19 +211,11 @@ export default function Register() {
             "
           >
             <input
-              type={
-                showPassword
-                  ? "text"
-                  : "password"
-              }
+              type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Password"
-              value={
-                form.password
-              }
-              onChange={
-                handleChange
-              }
+              value={form.password}
+              onChange={handleChange}
               autoComplete="new-password"
               className="
                 w-full
@@ -274,11 +238,7 @@ export default function Register() {
             {/* TOGGLE */}
             <button
               type="button"
-              onClick={() =>
-                setShowPassword(
-                  !showPassword
-                )
-              }
+              onClick={() => setShowPassword(!showPassword)}
               className="
                 absolute
                 top-1/2
@@ -291,11 +251,7 @@ export default function Register() {
                 transition-all
               "
             >
-              {showPassword ? (
-                <FaEyeSlash />
-              ) : (
-                <FaEye />
-              )}
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
 
@@ -318,21 +274,19 @@ export default function Register() {
               }
             `}
           >
-            {loading
-              ? "Creating Account..."
-              : "Register"}
+            {loading ? "Creating Account..." : "Register"}
           </button>
         </form>
 
         {/* FOOTER */}
-        <p className="
+        <p
+          className="
             text-gray-400
             mt-6
             text-center
           "
         >
-          Already have an
-          account?{" "}
+          Already have an account?{" "}
           <Link
             to="/login"
             className="

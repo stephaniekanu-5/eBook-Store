@@ -8,19 +8,13 @@ export default function App() {
   const location = useLocation();
   const { darkMode } = useTheme();
 
-  const authPages = [
-  "/login",
-  "/register",
-];
+  const authPages = ["/login", "/register"];
 
-const hideLayout =
-  authPages.includes(
-    location.pathname
-  );
+  const hideLayout = authPages.includes(location.pathname);
 
-return (
-  <div
-    className={`
+  return (
+    <div
+      className={`
 
       min-h-screen
       transition-all
@@ -39,24 +33,22 @@ return (
       }
 
     `}
-  >
-
-    {/* GLOBAL BACKGROUND */}
-    <div
-      className="
+    >
+      {/* GLOBAL BACKGROUND */}
+      <div
+        className="
         fixed
         inset-0
         -z-10
         overflow-hidden
         pointer-events-none
       "
-    >
-
-      {/* DARK MODE */}
-      {darkMode && (
-        <>
-          <div
-            className="
+      >
+        {/* DARK MODE */}
+        {darkMode && (
+          <>
+            <div
+              className="
               absolute
               top-0
               left-0
@@ -66,10 +58,10 @@ return (
               blur-[140px]
               rounded-full
             "
-          />
+            />
 
-          <div
-            className="
+            <div
+              className="
               absolute
               bottom-0
               right-0
@@ -79,15 +71,15 @@ return (
               blur-[140px]
               rounded-full
             "
-          />
-        </>
-      )}
+            />
+          </>
+        )}
 
-      {/* LIGHT MODE */}
-      {!darkMode && (
-        <>
-          <div
-            className="
+        {/* LIGHT MODE */}
+        {!darkMode && (
+          <>
+            <div
+              className="
               absolute
               top-0
               left-0
@@ -97,10 +89,10 @@ return (
               blur-[140px]
               rounded-full
             "
-          />
+            />
 
-          <div
-            className="
+            <div
+              className="
               absolute
               bottom-0
               right-0
@@ -110,28 +102,26 @@ return (
               blur-[140px]
               rounded-full
             "
-          />
-        </>
-      )}
+            />
+          </>
+        )}
+      </div>
 
-    </div>
+      {/* NAVBAR */}
+      {!hideLayout && <Navbar />}
 
-    {/* NAVBAR */}
-    {!hideLayout && <Navbar />}
-
-    {/* ROUTES */}
-    <main
-      className="
+      {/* ROUTES */}
+      <main
+        className="
         relative
         z-10
       "
-    >
-      <AppRoutes />
-    </main>
+      >
+        <AppRoutes />
+      </main>
 
-    {/* FOOTER */}
-    {!hideLayout && <Footer />}
-
-  </div>
-);
+      {/* FOOTER */}
+      {!hideLayout && <Footer />}
+    </div>
+  );
 }
